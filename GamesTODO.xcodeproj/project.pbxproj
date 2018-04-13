@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D01489207F9E4B0055D468 /* AppDelegate.swift */; };
-		A9D0148C207F9E4B0055D468 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0148B207F9E4B0055D468 /* ViewController.swift */; };
+		A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0148B207F9E4B0055D468 /* MainGamesList.swift */; };
 		A9D0148F207F9E4B0055D468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D0148D207F9E4B0055D468 /* Main.storyboard */; };
 		A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9D01490207F9E4B0055D468 /* GamesTODO.xcdatamodeld */; };
 		A9D01494207F9E4D0055D468 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9D01493207F9E4D0055D468 /* Assets.xcassets */; };
@@ -17,6 +17,7 @@
 		A9D014AD207F9E4E0055D468 /* GamesTODOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014AC207F9E4E0055D468 /* GamesTODOUITests.swift */; };
 		A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */; };
 		A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */; };
+		A9D1E7E22080FC4A00A40829 /* ViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 /* Begin PBXFileReference section */
 		A9D01486207F9E4B0055D468 /* GamesTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D01489207F9E4B0055D468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9D0148B207F9E4B0055D468 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A9D0148B207F9E4B0055D468 /* MainGamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGamesList.swift; sourceTree = "<group>"; };
 		A9D0148E207F9E4B0055D468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9D01491207F9E4B0055D468 /* GamesTODO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GamesTODO.xcdatamodel; sourceTree = "<group>"; };
 		A9D01493207F9E4D0055D468 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		A9D014AE207F9E4E0055D468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGamesCell.swift; sourceTree = "<group>"; };
 		A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGameCell.swift; sourceTree = "<group>"; };
+		A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				A9D01489207F9E4B0055D468 /* AppDelegate.swift */,
-				A9D0148B207F9E4B0055D468 /* ViewController.swift */,
+				A9D1E7E52080FCCF00A40829 /* MainGamesListScene */,
 				A9D0148D207F9E4B0055D468 /* Main.storyboard */,
 				A9D01493207F9E4D0055D468 /* Assets.xcassets */,
 				A9D01495207F9E4D0055D468 /* LaunchScreen.storyboard */,
@@ -134,6 +136,15 @@
 			path = GamesTODOUITests;
 			sourceTree = "<group>";
 		};
+		A9D1E7E52080FCCF00A40829 /* MainGamesListScene */ = {
+			isa = PBXGroup;
+			children = (
+				A9D0148B207F9E4B0055D468 /* MainGamesList.swift */,
+				A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */,
+			);
+			path = MainGamesListScene;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +155,7 @@
 				A9D01482207F9E4B0055D468 /* Sources */,
 				A9D01483207F9E4B0055D468 /* Frameworks */,
 				A9D01484207F9E4B0055D468 /* Resources */,
+				A9D1E7E42080FC9F00A40829 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -260,14 +272,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A9D1E7E42080FC9F00A40829 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint or run brew install swiftlint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A9D01482207F9E4B0055D468 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */,
-				A9D0148C207F9E4B0055D468 /* ViewController.swift in Sources */,
+				A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */,
 				A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */,
+				A9D1E7E22080FC4A00A40829 /* ViewPresenter.swift in Sources */,
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
 			);
