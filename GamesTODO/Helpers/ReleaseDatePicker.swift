@@ -10,11 +10,11 @@ import UIKit
 
 class ReleaseDatePicker: UIDatePicker {
   
-  //MARK: - Properties
+  // MARK: - Properties
   private let dateFormatter = DateFormatter()
   private weak var inputField: UITextField?
   
-  //MARK: - Initializers
+  // MARK: - Initializers
   required init(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)!
   }

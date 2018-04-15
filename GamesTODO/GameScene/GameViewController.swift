@@ -20,14 +20,15 @@ final class GameViewController: UIViewController {
 
   // MARK: - Properties
   var game: Game?
+  var isCreationMode = false
   private let gameImagePicker = ImagePickerDelegator()
   private var datePicker: UIDatePicker!
   private var shouldShiftKeyBoard = false
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
-    emptyGameLabel.isHidden = game != nil
-  
+    
+    emptyGameLabel.isHidden = (game != nil && !isCreationMode)
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardNotification(notification:)),
@@ -52,10 +53,10 @@ final class GameViewController: UIViewController {
     guard let userInfo = notification.userInfo, shouldShiftKeyBoard else { return }
     let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
     let endFrameY = endFrame?.origin.y ?? 0
-    let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+    let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
     let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
     let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-    let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+    let animationCurve = UIViewAnimationOptions(rawValue: animationCurveRaw)
     if endFrameY >= UIScreen.main.bounds.size.height {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
@@ -85,22 +86,12 @@ final class GameViewController: UIViewController {
     descriptionTextView.delegate = self
   }
   private func inflateLayoutIFNeeded(){
-    if game == nil { return }
+    if (game == nil && !isCreationMode) { return }
     gameTitleField.text = game?.title
     posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
     releaseDateField.text = "test"
     descriptionTextView.text = game?.description
   }
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }
 
 extension GameViewController: UITextFieldDelegate {

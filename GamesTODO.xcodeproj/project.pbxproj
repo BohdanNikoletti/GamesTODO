@@ -102,10 +102,25 @@
 			isa = PBXGroup;
 			children = (
 				40C4E2112083908600A6A381 /* GameViewController.swift */,
-				403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */,
-				403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */,
 			);
 			path = GameScene;
+			sourceTree = "<group>";
+		};
+		403B74BF2083EE5100F3BEFA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */,
+				403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		403B74C02083F03B00F3BEFA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				403B74BD2083D24000F3BEFA /* UIViewController+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		40C4E20D2083839300A6A381 /* Cells */ = {
@@ -151,13 +166,14 @@
 			isa = PBXGroup;
 			children = (
 				A9D01489207F9E4B0055D468 /* AppDelegate.swift */,
+				403B74C02083F03B00F3BEFA /* Extensions */,
+				403B74BF2083EE5100F3BEFA /* Helpers */,
 				40C4E20D2083839300A6A381 /* Cells */,
 				A9D1E7E52080FCCF00A40829 /* MainGamesListScene */,
 				403B74B82083CADF00F3BEFA /* GameScene */,
 				40C4E20E208383A700A6A381 /* Supporting Materials */,
 				A9D01498207F9E4D0055D468 /* Info.plist */,
 				A9D01490207F9E4B0055D468 /* GamesTODO.xcdatamodeld */,
-				403B74BD2083D24000F3BEFA /* UIViewController+.swift */,
 			);
 			path = GamesTODO;
 			sourceTree = "<group>";

@@ -11,11 +11,11 @@ import AVFoundation
 
 final class ImagePickerDelegator: NSObject {
   
-  //MARK: - Properties
+  // MARK: - Properties
   private weak var callingView: UIViewController!
   private weak var holder: UIImageView!
 
-  //MARK: - Actions
+  // MARK: - Actions
   @objc func imageClicked(_ sender: UIImage) {
     let imagePicker = UIImagePickerController()
     imagePicker.delegate = self
@@ -43,7 +43,7 @@ final class ImagePickerDelegator: NSObject {
     callingView.present(alert, animated: true)
   }
   
-  //MARK: - Public methods
+  // MARK: - Public methods
   func addGestureRecognizer(for holder: UIImageView, callingView: UIViewController){
     self.callingView = callingView
     self.holder = holder
