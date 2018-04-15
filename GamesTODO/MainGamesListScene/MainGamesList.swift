@@ -64,7 +64,7 @@ extension MainGamesList: MainGamesListPresensterProtocol {
     print(games)
   }
   
-  func didPick(game: Game) {
+  func show(game: Game) {
     self.navigationController?.performSegue(withIdentifier: "showDetails", sender: self)
   }
 

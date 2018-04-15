@@ -9,10 +9,9 @@
 import Foundation
 
 protocol MainGamesListPresensterProtocol {
-  //  func presentFetchGames(hasil: Double)
   func error(message: String)
   func show(games: [Game])
-  func didPick(game: Game)
+  func show(game: Game)
 }
 
 class MainGamesListPresenster: NSObject {

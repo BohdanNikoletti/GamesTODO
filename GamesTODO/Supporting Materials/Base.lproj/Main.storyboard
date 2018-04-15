@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aWo-bP-uTJ">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,22 +18,22 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainGamesList" customModule="GamesTODO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y3d-TC-dQw">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="finishedGamesCell" rowHeight="90" id="qYF-tf-RGq" customClass="FinishedGamesCell" customModule="GamesTODO" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qYF-tf-RGq" id="srA-Gf-cv6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kQf-cb-BlN">
-                                                    <rect key="frame" x="4" y="11" width="367" height="68"/>
+                                                    <rect key="frame" x="4" y="11" width="312" height="68"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c0S-65-qyQ">
                                                         <size key="itemSize" width="112" height="70"/>
@@ -132,56 +132,55 @@
             <objects>
                 <viewController id="b3l-Ph-9KL" customClass="GameViewController" customModule="GamesTODO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VEy-Wr-4NW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40s-SB-j52">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
-                                <color key="backgroundColor" red="0.314" green="0.50147724149999995" blue="0.71376317739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Game tittle" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vti-yh-PU8">
-                                <rect key="frame" x="0.0" y="116" width="375" height="32"/>
+                                <rect key="frame" x="4" y="68" width="316" height="32"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-image" translatesAutoresizingMaskIntoConstraints="NO" id="RKL-Qy-oWv">
-                                <rect key="frame" x="32" y="156" width="311" height="155.5"/>
+                                <rect key="frame" x="32" y="108" width="256" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RKL-Qy-oWv" secondAttribute="height" multiplier="2:1" id="RvM-0s-BuC"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00/00/0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncr-Fq-GVQ">
-                                <rect key="frame" x="32" y="319.5" width="311" height="30"/>
+                                <rect key="frame" x="32" y="244" width="256" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKL-Fe-ggt">
-                                <rect key="frame" x="0.0" y="381.5" width="371" height="31.5"/>
+                                <rect key="frame" x="0.0" y="306" width="316" height="31.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-ng-yhe">
-                                <rect key="frame" x="0.0" y="420.5" width="375" height="238.5"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="GAME DESCRIPTION GOES HERE" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-ng-yhe">
+                                <rect key="frame" x="0.0" y="345" width="320" height="215"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40s-SB-j52">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.314" green="0.50147724149999995" blue="0.71376317739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="trailing" secondItem="e4f-Ic-yoS" secondAttribute="trailing" id="4v4-rx-98p"/>
                             <constraint firstItem="40s-SB-j52" firstAttribute="bottom" secondItem="e4f-Ic-yoS" secondAttribute="bottom" id="7eB-8K-Pl4"/>
-                            <constraint firstItem="vti-yh-PU8" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" id="9bM-Pu-4U6"/>
+                            <constraint firstItem="vti-yh-PU8" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" constant="4" id="9bM-Pu-4U6"/>
                             <constraint firstItem="aKL-Fe-ggt" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" id="ACq-ak-KTo"/>
                             <constraint firstItem="e4f-Ic-yoS" firstAttribute="trailing" secondItem="ncr-Fq-GVQ" secondAttribute="trailing" constant="32" id="C5Z-0n-NXf"/>
-                            <constraint firstItem="vti-yh-PU8" firstAttribute="top" secondItem="e4f-Ic-yoS" secondAttribute="top" id="FzX-ys-Puq"/>
+                            <constraint firstItem="vti-yh-PU8" firstAttribute="top" secondItem="e4f-Ic-yoS" secondAttribute="top" constant="4" id="FzX-ys-Puq"/>
                             <constraint firstItem="RKL-Qy-oWv" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" constant="32" id="JAV-SZ-DTY"/>
                             <constraint firstItem="40s-SB-j52" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" id="JAk-oG-Jld"/>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="top" secondItem="aKL-Fe-ggt" secondAttribute="bottom" constant="8" id="OPF-fU-UOe"/>
@@ -208,7 +207,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="ahE-ng-yhe" id="0Nq-S2-GIg"/>
+                        <outlet property="emptyGameLabel" destination="40s-SB-j52" id="R0J-HU-OL9"/>
                         <outlet property="gameTitleField" destination="vti-yh-PU8" id="xT7-CZ-kAP"/>
+                        <outlet property="keyboardHeightLayoutConstraint" destination="FzX-ys-Puq" id="vJB-58-z84"/>
                         <outlet property="posterImageView" destination="RKL-Qy-oWv" id="p2V-Vj-HYA"/>
                         <outlet property="releaseDateField" destination="ncr-Fq-GVQ" id="cIi-Ca-sXO"/>
                         <outlet property="saveButton" destination="byl-f7-WgX" id="UjO-OB-u4h"/>
@@ -223,8 +224,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uvg-MW-tHD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="yzn-37-bF5">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yzn-37-bF5">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

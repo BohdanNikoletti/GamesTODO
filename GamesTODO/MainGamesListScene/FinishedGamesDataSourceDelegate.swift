@@ -9,6 +9,7 @@
 import UIKit
 
 final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+  
   // MARK: - Properties
   var games: [Game] = [ Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil),
                         Game(title: "Title2", description: "Description2", genre: "Genre3", releaseDate: Date(), poster: nil)]

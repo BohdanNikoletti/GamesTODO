@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		403B74BA2083CC1D00F3BEFA /* ImagePickerDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */; };
+		403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */; };
+		403B74BE2083D24000F3BEFA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BD2083D24000F3BEFA /* UIViewController+.swift */; };
 		40C4E2102083853D00A6A381 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E20F2083853D00A6A381 /* Game.swift */; };
 		40C4E2122083908600A6A381 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E2112083908600A6A381 /* GameViewController.swift */; };
 		40C4E214208391CA00A6A381 /* GamesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E213208391CA00A6A381 /* GamesListDataSource.swift */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegator.swift; sourceTree = "<group>"; };
+		403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDatePicker.swift; sourceTree = "<group>"; };
+		403B74BD2083D24000F3BEFA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		40C4E20F2083853D00A6A381 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		40C4E2112083908600A6A381 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		40C4E213208391CA00A6A381 /* GamesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListDataSource.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			children = (
 				40C4E2112083908600A6A381 /* GameViewController.swift */,
 				403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */,
+				403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				40C4E20E208383A700A6A381 /* Supporting Materials */,
 				A9D01498207F9E4D0055D468 /* Info.plist */,
 				A9D01490207F9E4B0055D468 /* GamesTODO.xcdatamodeld */,
+				403B74BD2083D24000F3BEFA /* UIViewController+.swift */,
 			);
 			path = GamesTODO;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				403B74BE2083D24000F3BEFA /* UIViewController+.swift in Sources */,
 				A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */,
 				40C4E214208391CA00A6A381 /* GamesListDataSource.swift in Sources */,
 				40C4E216208391DE00A6A381 /* GamesListDelegate.swift in Sources */,
@@ -347,6 +354,7 @@
 				A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */,
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
+				403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */,
 				40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

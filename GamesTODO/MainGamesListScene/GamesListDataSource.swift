@@ -11,7 +11,7 @@ import UIKit
 final class GamesListDataSource: NSObject, UITableViewDataSource {
   
   // MARK: - Properties
-  var games: [Game] = [ Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil)]
+  var games: [Game] = [Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil)]
   private let delegatTest = FinishedGamesDataSourceDelegate()
   
   // MARK: - UITableViewDataSource methdos

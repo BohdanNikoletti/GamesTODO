@@ -7,22 +7,14 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ImagePickerDelegator: NSObject, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+final class ImagePickerDelegator: NSObject {
   
   //MARK: - Properties
   private weak var callingView: UIViewController!
   private weak var holder: UIImageView!
-  
-//  var succesHandler: ((_ url: String)->())?
-  
-//  //MARK: - Initializer
-//  init(forUser userType: String = "", autoUpload: Bool = true){
-//    self.userType = userType
-//    self.autoUpload = autoUpload
-//  }
-//
+
   //MARK: - Actions
   @objc func imageClicked(_ sender: UIImage) {
     let imagePicker = UIImagePickerController()
@@ -34,19 +26,19 @@ UINavigationControllerDelegate {
       imagePicker.sourceType = .photoLibrary
       self.callingView.present(imagePicker, animated: true, completion: nil)
     }))
-//    alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
-//      action in
-//      isPermission(granted: {
-//        [unowned self] in
-//        imagePicker.sourceType = .camera
-//        self.callingView.present(imagePicker, animated: true, completion: nil)
-//        }, denied: {
-//          [unowned self] in
-//          self.callingView.showFailureAlertDialog(title: "Need camera permission",
-//                                                  errorDescription: "Please go to setting and allow app to use camera")
-//      })
-//      
-//    }))
+    alert.addAction(UIAlertAction(title: "Camera",
+                                  style: .default,
+                                  handler: { [unowned self] action in
+      self.isPermission(granted: {
+        [unowned self] in
+        imagePicker.sourceType = .camera
+        self.callingView.present(imagePicker, animated: true, completion: nil)
+        }, denied: {
+          [unowned self] in
+          self.callingView.show(message: "Need camera permission", with: "Please go to setting and allow app to use camera")
+      })
+      
+    }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     callingView.present(alert, animated: true)
   }
@@ -62,7 +54,27 @@ UINavigationControllerDelegate {
     holder.addGestureRecognizer(singleTap)
   }
   
-  //MARK: - UIImagePickerControllerDelegate method
+
+  
+  // MARK: - Privaet methdos
+  func isPermission(granted: @escaping() ->(), denied: @escaping()->()) {
+    if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+      DispatchQueue.main.async() { granted() }
+    } else {
+      AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {
+        (access: Bool) -> Void in
+        if access {
+          DispatchQueue.main.async() { granted() }
+        } else {
+          denied()
+        }
+      })
+    }
+  }
+}
+
+//MARK: - UIImagePickerControllerDelegate method
+extension ImagePickerDelegator:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController,
                              didFinishPickingMediaWithInfo info: [String : Any]) {
     
