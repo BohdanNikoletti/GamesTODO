@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40C4E2102083853D00A6A381 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E20F2083853D00A6A381 /* Game.swift */; };
 		A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D01489207F9E4B0055D468 /* AppDelegate.swift */; };
 		A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0148B207F9E4B0055D468 /* MainGamesList.swift */; };
 		A9D0148F207F9E4B0055D468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D0148D207F9E4B0055D468 /* Main.storyboard */; };
@@ -17,7 +18,7 @@
 		A9D014AD207F9E4E0055D468 /* GamesTODOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014AC207F9E4E0055D468 /* GamesTODOUITests.swift */; };
 		A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */; };
 		A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */; };
-		A9D1E7E22080FC4A00A40829 /* ViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */; };
+		A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40C4E20F2083853D00A6A381 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A9D01486207F9E4B0055D468 /* GamesTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D01489207F9E4B0055D468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9D0148B207F9E4B0055D468 /* MainGamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGamesList.swift; sourceTree = "<group>"; };
@@ -54,7 +56,7 @@
 		A9D014AE207F9E4E0055D468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGamesCell.swift; sourceTree = "<group>"; };
 		A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGameCell.swift; sourceTree = "<group>"; };
-		A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPresenter.swift; sourceTree = "<group>"; };
+		A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGamesListPresenster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40C4E20D2083839300A6A381 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */,
+				A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		40C4E20E208383A700A6A381 /* Supporting Materials */ = {
+			isa = PBXGroup;
+			children = (
+				A9D01493207F9E4D0055D468 /* Assets.xcassets */,
+				A9D0148D207F9E4B0055D468 /* Main.storyboard */,
+				A9D01495207F9E4D0055D468 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Materials";
+			sourceTree = "<group>";
+		};
 		A9D0147D207F9E4B0055D468 = {
 			isa = PBXGroup;
 			children = (
@@ -106,14 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				A9D01489207F9E4B0055D468 /* AppDelegate.swift */,
+				40C4E20D2083839300A6A381 /* Cells */,
 				A9D1E7E52080FCCF00A40829 /* MainGamesListScene */,
-				A9D0148D207F9E4B0055D468 /* Main.storyboard */,
-				A9D01493207F9E4D0055D468 /* Assets.xcassets */,
-				A9D01495207F9E4D0055D468 /* LaunchScreen.storyboard */,
+				40C4E20E208383A700A6A381 /* Supporting Materials */,
 				A9D01498207F9E4D0055D468 /* Info.plist */,
 				A9D01490207F9E4B0055D468 /* GamesTODO.xcdatamodeld */,
-				A9D014BA207FA5900055D468 /* FinishedGamesCell.swift */,
-				A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */,
 			);
 			path = GamesTODO;
 			sourceTree = "<group>";
@@ -140,7 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				A9D0148B207F9E4B0055D468 /* MainGamesList.swift */,
-				A9D1E7E12080FC4A00A40829 /* ViewPresenter.swift */,
+				A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */,
+				40C4E20F2083853D00A6A381 /* Game.swift */,
 			);
 			path = MainGamesListScene;
 			sourceTree = "<group>";
@@ -296,8 +315,9 @@
 			files = (
 				A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */,
 				A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */,
+				40C4E2102083853D00A6A381 /* Game.swift in Sources */,
 				A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */,
-				A9D1E7E22080FC4A00A40829 /* ViewPresenter.swift in Sources */,
+				A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */,
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
 			);
@@ -474,6 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GamesTODO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GamesTODO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

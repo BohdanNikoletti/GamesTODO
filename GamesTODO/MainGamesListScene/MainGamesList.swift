@@ -8,16 +8,9 @@
 
 import UIKit
 
-struct Game {
-  let title: String
-  let description: String
-  let genre: String
-  let releaseDate: Date
-  let poster: UIImage?
-}
-
-final class TableViewDelegate: NSObject, UITableViewDelegate {
-  var games: [Game] = []
+final class GamesListDelegate: NSObject, UITableViewDelegate {
+ 
+  // MARK: - UITableViewDelegate methdos
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
   }
@@ -29,16 +22,17 @@ final class TableViewDelegate: NSObject, UITableViewDelegate {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = UILabel()
     label.textAlignment = .center
-    //    label.textColor = UIColor.AppColors.darkSkyBlue
     label.adjustsFontSizeToFitWidth = true
-    label.font = UIFont(name: "HelveticaNeue", size: 16.0)
-    label.text = "Test"
+    label.font = UIFont.systemFont(ofSize: 16)
+    label.text = section == 0 ? "Finished games" : "Games to play"
     label.backgroundColor = #colorLiteral(red: 0.8820130229, green: 0.9472284913, blue: 0.9974038005, alpha: 1)
     return label
   }
 }
 
 final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+  
+  // MARK: - UICollectionViewDelegate & UICollectionViewDataSource methods
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
   }
@@ -50,19 +44,23 @@ final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate,
     guard let cell = collectionView
       .dequeueReusableCell(withReuseIdentifier: "finishedGameCell",
                            for: indexPath) as? FinishedGameCell else {
-                            fatalError("Can not cast collectionViewItem to FinishedGameCell")
+                            fatalError("Can not cast finishedGameCell to FinishedGameCell")
     }
     return cell
   }
 }
 
-final class TableViewDataSource: NSObject, UITableViewDataSource {
+final class GamesListDataSource: NSObject, UITableViewDataSource {
+  // MARK: - Properties
   var games: [Game] = [ Game(title: "Test", description: "Test", genre: "Genre", releaseDate: Date(), poster: nil)]
-  var delegatTest = FinishedGamesDataSourceDelegate()
+  private let delegatTest = FinishedGamesDataSourceDelegate()
+  
+  // MARK: - UITableViewDataSource methdos
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
     return section == 0 ? 1 : games.count
   }
+  
   func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
@@ -72,7 +70,7 @@ final class TableViewDataSource: NSObject, UITableViewDataSource {
       guard let cell = tableView
         .dequeueReusableCell(withIdentifier: "finishedGamesCell",
                              for: indexPath) as? FinishedGamesCell else {
-                              fatalError("can not cast scheduleSectionCell to FinishedGamesCell")
+                              fatalError("can not cast finishedGamesCell to FinishedGamesCell")
       }
       cell.setCollectionViewDataSourceDelegate(delegatTest, forRow: indexPath.row)
       return cell
@@ -91,19 +89,23 @@ final class MainGamesList: UIViewController {
   @IBOutlet weak private var contentTable: UITableView!
   
   // MARK: - Properties
-  private var games: [Game] = [ Game(title: "Test", description: "Test", genre: "Genre", releaseDate: Date(), poster: nil)]
-  let delegatTest = FinishedGamesDataSourceDelegate()
-  private let adapter = TableViewDataSource()
+  private let gamesListDataSource = GamesListDataSource()
+  private let gamesListDelegate = GamesListDelegate()
+  
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
-    contentTable.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-    contentTable.delegate = TableViewDelegate()
-    contentTable.dataSource = adapter//TableViewDataSource()
+    prepareTableView() 
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - Private methods
+  private func prepareTableView() {
+    contentTable.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    contentTable.delegate = gamesListDelegate
+    contentTable.dataSource = gamesListDataSource
   }
 }
