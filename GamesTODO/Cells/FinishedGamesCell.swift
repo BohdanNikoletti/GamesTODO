@@ -2,7 +2,7 @@
 //  FinishedGamesCell.swift
 //  GamesTODO
 //
-//  Created by Soft Project on 4/12/18.
+//  Created by Bohdan Mihiliev on 4/12/18.
 //  Copyright © 2018 Bohdan. All rights reserved.
 //
 

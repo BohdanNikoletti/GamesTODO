@@ -2,7 +2,7 @@
 //  FinishedGameCell.swift
 //  GamesTODO
 //
-//  Created by Soft Project on 4/12/18.
+//  Created by Bohdan Mihiliev on 4/12/18.
 //  Copyright © 2018 Bohdan. All rights reserved.
 //
 
@@ -13,6 +13,18 @@ final class FinishedGameCell: UICollectionViewCell {
   // MARK: Outlets
   @IBOutlet weak private var nameLabel: UILabel!
   @IBOutlet weak private var posterImageView: UIImageView!
+  
+  // MARK: - Properties
+  var title: String? {
+    didSet {
+      nameLabel.text = title
+    }
+  }
+  var posterImage: UIImage? {
+    didSet {
+      posterImageView.image = posterImage ?? #imageLiteral(resourceName: "empty-image")
+    }
+  }
   
   // MARK: Lifecycle events
   override func awakeFromNib() {
