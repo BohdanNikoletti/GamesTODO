@@ -19,11 +19,12 @@ final class GameViewController: UIViewController {
   @IBOutlet weak var emptyGameLabel: UILabel!
 
   // MARK: - Properties
-  var game: Game?
+  var game: GameItem?
   var isCreationMode = false
   private let gameImagePicker = ImagePickerDelegator()
   private var datePicker: UIDatePicker!
   private var shouldShiftKeyBoard = false
+  private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,9 +36,9 @@ final class GameViewController: UIViewController {
                                            name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                            object: nil)
     prepareDatePicker()
-    prepareDescriptionView()
     hideKeyboardOnTouch()
-    inflateLayoutIFNeeded()
+    inflateLayoutIfNeeded()
+    prepareDescriptionView()
   }
   deinit {
     NotificationCenter.default.removeObserver(self)
@@ -48,7 +49,7 @@ final class GameViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  //MARK: - Actions
+  // MARK: - Actions
   @objc func keyboardNotification(notification: NSNotification) {
     guard let userInfo = notification.userInfo, shouldShiftKeyBoard else { return }
     let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
@@ -60,12 +61,13 @@ final class GameViewController: UIViewController {
     if endFrameY >= UIScreen.main.bounds.size.height {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
-      self.keyboardHeightLayoutConstraint?.constant = -endFrame!.size.height //?? 0.0
+      let endframeSize = endFrame?.size.height ?? 0
+      self.keyboardHeightLayoutConstraint?.constant = -endframeSize
     }
     UIView.animate(withDuration: duration,
                    delay: TimeInterval(0),
                    options: animationCurve,
-                   animations: {[unowned self] in self.view.layoutIfNeeded() },
+                   animations: { [unowned self] in self.view.layoutIfNeeded() },
                    completion: nil)
   }
 
@@ -80,17 +82,19 @@ final class GameViewController: UIViewController {
     releaseDateField.delegate = self
     releaseDateField.tintColor = .clear
   }
+  
   private func prepareDescriptionView() {
-    descriptionTextView.text = "GAME DESCRIPTION GOES HERE"
-    descriptionTextView.textColor = UIColor.lightGray
+    descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
+//    descriptionTextView.text = "GAME DESCRIPTION GOES HERE"
     descriptionTextView.delegate = self
   }
-  private func inflateLayoutIFNeeded(){
-    if (game == nil && !isCreationMode) { return }
+  
+  private func inflateLayoutIfNeeded() {
+    if game == nil && !isCreationMode { return }
     gameTitleField.text = game?.title
     posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
     releaseDateField.text = "test"
-    descriptionTextView.text = game?.description
+    descriptionTextView.text = game?.fullDescription
   }
 }
 
@@ -107,14 +111,14 @@ extension GameViewController: UITextViewDelegate {
     shouldShiftKeyBoard = true
     return true
   }
-  func textViewDidBeginEditing(_ textView: UITextView){
-    if (textView.text == "GAME DESCRIPTION GOES HERE") {
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    if textView.text == "GAME DESCRIPTION GOES HERE" {
       textView.text = ""
       textView.textColor = .black
     }
   }
   
-  func textViewDidEndEditing(_ textView: UITextView){
+  func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
       textView.text = "GAME DESCRIPTION GOES HERE"
       textView.textColor = .lightGray
@@ -123,4 +127,3 @@ extension GameViewController: UITextViewDelegate {
     shouldShiftKeyBoard = false
   }
 }
-

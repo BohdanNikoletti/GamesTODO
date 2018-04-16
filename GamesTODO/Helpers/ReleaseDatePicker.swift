@@ -15,26 +15,29 @@ class ReleaseDatePicker: UIDatePicker {
   private weak var inputField: UITextField?
   
   // MARK: - Initializers
-  required init(coder aDecoder: NSCoder){
-    super.init(coder: aDecoder)!
+  required init(coder aDecoder: NSCoder) {
+    fatalError("Not implemented")
   }
   
   init(forField inputField: UITextField) {
     super.init(frame: CGRect.zero)
     self.inputField = inputField
-    dateFormatter.dateFormat = "dd/MM/yyyy"//yyy/MM/dd"
+    dateFormatter.dateFormat = "dd/MM/yyyy"
     self.datePickerMode = .date
     self.addTarget(self, action: #selector(self.datePicked(_:)), for: .valueChanged)
+    setPickerRange()
   }
   
   // MARK: - Actions
-  @objc func datePicked(_ sender: UIDatePicker){
+  @objc func datePicked(_ sender: UIDatePicker) {
     inputField?.text = dateFormatter.string(from: self.date)
   }
   
-  // MARK: - Public methods
-  func setDealPickerRange(){
-    self.minimumDate = Calendar.current.date(byAdding: .day, value: 3, to: Date())
-    self.maximumDate = Calendar.current.date(byAdding: .year, value: 3, to: Date())
+  // MARK: - Private methods
+  private func setPickerRange() {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy"
+    self.minimumDate = formatter.date(from: "1970")
+    self.maximumDate = Calendar.current.date(byAdding: .year, value: 5, to: Date())
   }
 }

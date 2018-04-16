@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct Game {
+struct GameItem {
   let title: String
-  let description: String
+  let fullDescription: String
   let genre: String
   let releaseDate: Date
   let poster: UIImage?

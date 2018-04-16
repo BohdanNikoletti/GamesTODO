@@ -40,7 +40,7 @@ final class MainGamesList: UIViewController {
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let gameDetail = segue.destination as? GameViewController else { return }
-    gameDetail.game = Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil)
+    gameDetail.game = GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)
 //    gameDetail.isCreationMode = segue.identifier
   }
 }
@@ -59,17 +59,20 @@ extension MainGamesList: UITableViewDelegate {
     if indexPath.section == 0 { return }
     performSegue(withIdentifier: "showDetails", sender: self)
   }
+  
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = UILabel()
     label.textAlignment = .center
     label.adjustsFontSizeToFitWidth = true
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.font = UIFont.boldSystemFont(ofSize: 16)
+    label.textColor = #colorLiteral(red: 1, green: 0.8078431373, blue: 0.3294117647, alpha: 1)
     label.text = section == 0 ? "Finished games" : "Games to play"
-    label.backgroundColor = #colorLiteral(red: 0.8820130229, green: 0.9472284913, blue: 0.9974038005, alpha: 1)
+    label.backgroundColor = #colorLiteral(red: 0.3960784314, green: 0.4274509804, blue: 0.4705882353, alpha: 1)
     return label
   }
 }
-extension MainGamesList:  UISplitViewControllerDelegate {
+
+extension MainGamesList: UISplitViewControllerDelegate {
   func splitViewController(_ splitViewController: UISplitViewController,
                            collapseSecondary secondaryViewController: UIViewController,
                            onto primaryViewController: UIViewController) -> Bool {
@@ -82,17 +85,17 @@ extension MainGamesList:  UISplitViewControllerDelegate {
   }
 }
 
-extension MainGamesList: MainGamesListPresensterProtocol {
+extension MainGamesList: MainGamesListView {
   
   func error(message: String) {
     print(message)
   }
   
-  func show(games: [Game]) {
+  func show(games: [GameItem]) {
     print(games)
   }
   
-  func show(game: Game) {
+  func show(game: GameItem) {
     self.navigationController?.performSegue(withIdentifier: "showDetails", sender: self)
   }
 

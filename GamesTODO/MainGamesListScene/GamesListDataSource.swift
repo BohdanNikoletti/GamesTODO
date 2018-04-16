@@ -11,7 +11,7 @@ import UIKit
 final class GamesListDataSource: NSObject, UITableViewDataSource {
   
   // MARK: - Properties
-  var games: [Game] = [Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil)]
+  var games: [GameItem] = [GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)]
   private let delegatTest = FinishedGamesDataSourceDelegate()
   
   // MARK: - UITableViewDataSource methdos
@@ -43,7 +43,7 @@ final class GamesListDataSource: NSObject, UITableViewDataSource {
       cell?.detailTextLabel?.text = games[indexPath.row].genre
       cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
       cell?.accessoryType = .disclosureIndicator
-      return cell!
+      return cell.unsafelyUnwrapped
     }
   }
 }

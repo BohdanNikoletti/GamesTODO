@@ -11,8 +11,8 @@ import UIKit
 final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
   
   // MARK: - Properties
-  var games: [Game] = [ Game(title: "Title", description: "Description", genre: "Genre", releaseDate: Date(), poster: nil),
-                        Game(title: "Title2", description: "Description2", genre: "Genre3", releaseDate: Date(), poster: nil)]
+  var games: [GameItem] = [ GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil),
+                        GameItem(title: "Title2", fullDescription: "Description2", genre: "Genre3", releaseDate: Date(), poster: nil)]
   
   // MARK: - UICollectionViewDelegate & UICollectionViewDataSource methods
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -8,20 +8,21 @@
 
 import Foundation
 
-protocol MainGamesListPresensterProtocol {
+protocol MainGamesListView {
   func error(message: String)
-  func show(games: [Game])
-  func show(game: Game)
+  func show(games: [GameItem])
+  func show(game: GameItem)
 }
 
-class MainGamesListPresenster: NSObject {
-  var presenter: MainGamesListPresensterProtocol!
+final class MainGamesListPresenster {
   
-  init(presenter: MainGamesListPresensterProtocol) {
-    self.presenter = presenter;
+  var presenter: MainGamesListView!
+  
+  init(presenter: MainGamesListView) {
+    self.presenter = presenter
   }
   
-  func getGames(){
+  func getGames() {
   }
 
 }
