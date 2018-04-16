@@ -292,7 +292,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="ncG-E4-4f5">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" id="ncG-E4-4f5">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -348,6 +348,6 @@
         <image name="empty-image" width="311" height="207"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E8u-zJ-whI"/>
+        <segue reference="UFV-3E-CpE"/>
     </inferredMetricsTieBreakers>
 </document>

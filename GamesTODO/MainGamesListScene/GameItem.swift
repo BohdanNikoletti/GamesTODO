@@ -59,9 +59,8 @@ struct GameItem {
     self.title = (coreDataModel.value(forKey: "title") as? String) ?? ""
     self.fullDescription = (coreDataModel.value(forKey: "fullDescription") as? String) ?? ""
     self.genre = (coreDataModel.value(forKey: "genre") as? String) ?? ""
-    self.releaseDate = (coreDataModel.value(forKey: "releaseDate") as? Date) ?? Date()
+    self.releaseDate = (coreDataModel.value(forKey: "releaseDate") as? Date)
     self.isFinished = (coreDataModel.value(forKey: "isFinished") as? Bool) ?? false
-
   }
   
 }

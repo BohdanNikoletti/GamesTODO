@@ -50,7 +50,6 @@ final class GameViewController: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   // MARK: - Actions
@@ -144,5 +143,4 @@ extension GameViewController: GameView {
   func succesAdded(game: GameItem) {
     show(message: "Game Succesfully added", with: "Information")
   }
-  
 }

@@ -17,7 +17,7 @@ final class MainGamesList: UIViewController {
   //  private let gamesListDataSource = GamesListDataSource()
   //  private let gamesListDelegate = GamesListDelegate()
   private var presenter: MainGamesListPresenster?
-  private var games: [GameItem] = [] //GameItem(title: "Test1", fullDescription: "fullDescription1", genre: "genre1",releaseDate: Date(), poster: nil, isFinished: false)
+  private var games: [GameItem] = []
   private var finishedGames: [GameItem] = []
   private let delegatTest = FinishedGamesDataSourceDelegate()
   
@@ -42,6 +42,7 @@ final class MainGamesList: UIViewController {
   private func prepareTableView() {
     contentTable.delegate = self//gamesListDelegate
     contentTable.dataSource = self// gamesListDataSource
+    contentTable.allowsSelectionDuringEditing = false
   }
   
   // MARK: - Navigation
@@ -70,7 +71,6 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     }
     tableView.isScrollEnabled = true
     return UITableViewAutomaticDimension
-    //    return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -81,7 +81,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     if indexPath.section == 0 || games.isEmpty { return }
     performSegue(withIdentifier: "showDetails", sender: self)
   }
-  
+
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = UILabel()
     label.textAlignment = .center
@@ -91,6 +91,23 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     label.text = section == 0 ? "Finished games" : "Games to play"
     label.backgroundColor = #colorLiteral(red: 0.3960784314, green: 0.4274509804, blue: 0.4705882353, alpha: 1)
     return label
+  }
+  
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return indexPath.section != 0 && !games.isEmpty
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+                 forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let game = games.remove(at: indexPath.row)
+      presenter?.delete(game)
+      if games.isEmpty {
+        tableView.reloadData()
+      } else {
+        tableView.deleteRows(at: [indexPath], with: .fade)
+      }
+    }
   }
   
   // MARK: UITableViewDataSource methdos
@@ -146,7 +163,7 @@ extension MainGamesList: UISplitViewControllerDelegate {
 extension MainGamesList: MainGamesListView {
   
   func error(message: String) {
-    print(message)
+    show(message: message, with: "Something went wrong")
   }
   
   func show(games: [GameItem]) {

@@ -10,7 +10,9 @@ import Foundation
 extension DateFormatter {
   static let base: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "dd/MM/yyyy"
+    formatter.timeZone = TimeZone.current
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "MM/dd/yyyy"
     return formatter
   }()
   
