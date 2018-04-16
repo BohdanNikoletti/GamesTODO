@@ -8,35 +8,32 @@
 
 import UIKit
 typealias AppAlertAction = (action: (() -> Void )?, name: String)
+
 extension UIViewController {
   
   func show(message: String?, with title: String?,
-            succesActionHandler: (() -> Void )? = nil,
-            destructiveActionHandler: (() -> Void )? = nil) {
+            succesActionHandler:AppAlertAction? = nil,
+            destructiveActionHandler: AppAlertAction? = nil) {
     let baseAlert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
     func alerActionHandler (_ action: UIAlertAction) {
-      succesActionHandler?()
+      succesActionHandler?.action?()
     }
     func destructiveAlerActionHandler (_ action: UIAlertAction) {
-      destructiveActionHandler?()
+      destructiveActionHandler?.action?()
     }
-    baseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: alerActionHandler))
-    baseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: alerActionHandler))
-
+    if let alertActionTittle = succesActionHandler?.name {
+      baseAlert.addAction(UIAlertAction(title: alertActionTittle, style: .default, handler: alerActionHandler))
+    }
+    if let destructiveActionTittle = destructiveActionHandler?.name{
+      baseAlert.addAction(UIAlertAction(title: destructiveActionTittle, style: .destructive, handler: destructiveAlerActionHandler))
+    }
+    if baseAlert.actions.isEmpty { // create default action
+      baseAlert.addAction(UIAlertAction(title: "OK", style: .default))
+    }
     present(baseAlert, animated: true, completion: nil)
   }
-  
-//  func error(handler: (() -> Void )?, for error: Error?) {
-//
-//    if let handler = handler {
-//      handler()
-//    } else {
-//      self.show(failure: error?.localizedDescription, with: "Error")
-//    }
-//
-//  }
   
   func hideKeyboardOnTouch() {
     let tap  = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))

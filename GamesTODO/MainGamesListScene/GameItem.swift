@@ -30,9 +30,6 @@ struct GameItem {
   }
   
   var releaseDateString: String {
-    set {
-      releaseDate = DateFormatter.base.date(from: releaseDateString)
-    }
     get {
       guard let releaseDate = self.releaseDate else {
         return "TBA"

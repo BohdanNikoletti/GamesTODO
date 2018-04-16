@@ -35,14 +35,11 @@ final class GameViewController: UIViewController {
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     presenter = GameViewPresenter(presenter: self)
 
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(self.keyboardNotification(notification:)),
-                                           name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                           object: nil)
     prepareDatePicker()
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
-    prepareDescriptionView()
+    prepareDescriptionViewAndKeyboardHandler()
+//    prepareDescriptionView()
   }
   deinit {
     NotificationCenter.default.removeObserver(self)
@@ -65,7 +62,7 @@ final class GameViewController: UIViewController {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
       let endframeSize = endFrame?.size.height ?? 0
-      self.keyboardHeightLayoutConstraint?.constant = -endframeSize
+      self.keyboardHeightLayoutConstraint?.constant = -endframeSize+32
     }
     UIView.animate(withDuration: duration,
                    delay: TimeInterval(0),
@@ -73,19 +70,23 @@ final class GameViewController: UIViewController {
                    animations: { [unowned self] in self.view.layoutIfNeeded() },
                    completion: nil)
   }
-
+  
+  @objc func descriptionDoneCLicked(){
+    dismissKeyboard()
+  }
+  
   @IBAction func save(_ sender: UIBarButtonItem) {
     guard let title = gameTitleField.text else {
       // TODO: Show error
       return
     }
     if game == nil {
+      var releaseDate: Date?
       if let dateString = releaseDateField.text {
-        DateFormatter.base.date(from: dateString)
+        releaseDate = DateFormatter.base.date(from: dateString)
       }
       game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-      releaseDate: Date(), poster: posterImageView.image, isFinished: false)
-      game?.releaseDateString = releaseDateField.text ?? ""
+      releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
   }
@@ -97,11 +98,11 @@ final class GameViewController: UIViewController {
     releaseDateField.inputView = datePicker
     releaseDateField.tintColor = .clear
   }
-  
-  private func prepareDescriptionView() {
-    descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
-    descriptionTextView.delegate = self
-  }
+//
+//  private func prepareDescriptionView() {
+//    descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
+//    descriptionTextView.delegate = self
+//  }
   
   private func inflateLayoutIfNeeded() {
     if game == nil /*&& !isCreationMode*/ { return }
@@ -109,6 +110,21 @@ final class GameViewController: UIViewController {
     posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
     releaseDateField.text = game?.releaseDateString
     descriptionTextView.text = game?.fullDescription
+  }
+  
+  private func prepareDescriptionViewAndKeyboardHandler() {
+    descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
+    descriptionTextView.delegate = self
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(self.keyboardNotification(notification:)),
+                                           name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                           object: nil)
+    let toolBar = UIToolbar()
+    toolBar.sizeToFit()
+    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.descriptionDoneCLicked))
+    toolBar.setItems([flexibleSpace, doneButton], animated: true)
+    descriptionTextView.inputAccessoryView = toolBar
   }
 }
 

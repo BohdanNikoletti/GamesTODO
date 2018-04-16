@@ -29,11 +29,6 @@ final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate,
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 0 { // Empty section case
-//      guard let cell = collectionView
-//        .dequeueReusableCell(withReuseIdentifier: "emptyFinishedGameCell",
-//                             for: indexPath) as? FinishedGameCell else {
-//                              fatalError("Can not cast finishedGameCell to FinishedGameCell")
-//      }
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyFinishedGameCell", for: indexPath)
       return cell
     }

@@ -25,30 +25,29 @@ final class GameViewPresenter {
   func save(game: GameItem) {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+      return
     }
     
     let managedContext = appDelegate.persistentContainer.viewContext
     
     let entity = NSEntityDescription.entity(forEntityName: "Game",
-                                 in: managedContext).unsafelyUnwrapped
+                                            in: managedContext).unsafelyUnwrapped
     
     let gameToSave = NSManagedObject(entity: entity,
-                                 insertInto: managedContext)
+                                     insertInto: managedContext)
     
     gameToSave.setValue(game.title, forKeyPath: "title")
     gameToSave.setValue(game.fullDescription, forKeyPath: "fullDescription")
     gameToSave.setValue(game.genre, forKeyPath: "genre")
     gameToSave.setValue(game.releaseDate, forKeyPath: "releaseDate")
     gameToSave.setValue(game.isFinished, forKeyPath: "isFinished")
-
+    
     if let imageToSave = game.poster {
       ImageCachingService.sharedInstance.saveImage(image: imageToSave, key: game.imageKey)
     }
     do {
       try managedContext.save()
       presenter.succesAdded(game: game)
-//      people.append(person)
     } catch let error {
       presenter.error(message: error.localizedDescription)
     }

@@ -22,7 +22,7 @@ final class ReleaseDatePicker: UIDatePicker {
   init(forField inputField: UITextField) {
     super.init(frame: CGRect.zero)
     self.inputField = inputField
-    dateFormatter.dateFormat = "dd/MM/yyyy"
+//    dateFormatter.dateFormat = "MM/dd/yyyy"
     self.datePickerMode = .date
     self.addTarget(self, action: #selector(self.datePicked(_:)), for: .valueChanged)
     setPickerRange()
