@@ -37,6 +37,11 @@ final class GameViewPresenter {
                                  insertInto: managedContext)
     
     gameToSave.setValue(game.title, forKeyPath: "title")
+    gameToSave.setValue(game.fullDescription, forKeyPath: "fullDescription")
+    gameToSave.setValue(game.genre, forKeyPath: "genre")
+    gameToSave.setValue(game.releaseDate, forKeyPath: "releaseDate")
+    gameToSave.setValue(game.isFinished, forKeyPath: "isFinished")
+
     if let imageToSave = game.poster {
       ImageCachingService.sharedInstance.saveImage(image: imageToSave, key: game.imageKey)
     }

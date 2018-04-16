@@ -22,16 +22,19 @@ final class GameViewController: UIViewController {
   var game: GameItem?
   var isCreationMode = false
   private let gameImagePicker = ImagePickerDelegator()
-  private var datePicker: UIDatePicker!
+  private var datePicker: UIDatePicker?
   private var shouldShiftKeyBoard = false
   private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
-  
+  private var presenter: GameViewPresenter?
+
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
-    emptyGameLabel.isHidden = (game != nil && !isCreationMode)
+    emptyGameLabel.isHidden = true//(game != nil && !isCreationMode)
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
+    presenter = GameViewPresenter(presenter: self)
+
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardNotification(notification:)),
                                            name: NSNotification.Name.UIKeyboardWillChangeFrame,
@@ -73,6 +76,19 @@ final class GameViewController: UIViewController {
   }
 
   @IBAction func save(_ sender: UIBarButtonItem) {
+    guard let title = gameTitleField.text else {
+      // TODO: Show error
+      return
+    }
+    if game == nil {
+      if let dateString = releaseDateField.text {
+        DateFormatter.base.date(from: dateString)
+      }
+      game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
+      releaseDate: Date(), poster: posterImageView.image, isFinished: false)
+      game?.releaseDateString = releaseDateField.text ?? ""
+      presenter?.save(game: game.unsafelyUnwrapped)
+    }
   }
   
   // MARK: - Private methods
@@ -80,18 +96,16 @@ final class GameViewController: UIViewController {
     let releaseDatePicker = ReleaseDatePicker(forField: releaseDateField)
     datePicker = releaseDatePicker
     releaseDateField.inputView = datePicker
-    releaseDateField.delegate = self
     releaseDateField.tintColor = .clear
   }
   
   private func prepareDescriptionView() {
     descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
-//    descriptionTextView.text = "GAME DESCRIPTION GOES HERE"
     descriptionTextView.delegate = self
   }
   
   private func inflateLayoutIfNeeded() {
-    if game == nil && !isCreationMode { return }
+    if game == nil /*&& !isCreationMode*/ { return }
     gameTitleField.text = game?.title
     posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
     releaseDateField.text = game?.releaseDateString
@@ -99,14 +113,7 @@ final class GameViewController: UIViewController {
   }
 }
 
-extension GameViewController: UITextFieldDelegate {
-  func textField(_ textField: UITextField,
-                 shouldChangeCharactersIn range: NSRange,
-                 replacementString string: String) -> Bool {
-    return false
-  }
-}
-
+// MARK: Descritpion UITextViewDelegate
 extension GameViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
     shouldShiftKeyBoard = true
@@ -127,4 +134,15 @@ extension GameViewController: UITextViewDelegate {
     textView.resignFirstResponder()
     shouldShiftKeyBoard = false
   }
+}
+// MARK: GameView
+extension GameViewController: GameView {
+  func error(message: String) {
+    show(message: message, with: "Something went wrong")
+  }
+  
+  func succesAdded(game: GameItem) {
+    show(message: "Game Succesfully added", with: "Information")
+  }
+  
 }

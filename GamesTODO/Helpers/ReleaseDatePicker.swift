@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReleaseDatePicker: UIDatePicker {
+final class ReleaseDatePicker: UIDatePicker {
   
   // MARK: - Properties
   private let dateFormatter = DateFormatter.base
@@ -26,6 +26,7 @@ class ReleaseDatePicker: UIDatePicker {
     self.datePickerMode = .date
     self.addTarget(self, action: #selector(self.datePicked(_:)), for: .valueChanged)
     setPickerRange()
+    inputField.delegate = self
   }
   
   // MARK: - Actions
@@ -39,5 +40,12 @@ class ReleaseDatePicker: UIDatePicker {
     formatter.dateFormat = "yyyy"
     self.minimumDate = formatter.date(from: "1970")
     self.maximumDate = Calendar.current.date(byAdding: .year, value: 5, to: Date())
+  }
+}
+extension ReleaseDatePicker: UITextFieldDelegate {
+  func textField(_ textField: UITextField,
+                 shouldChangeCharactersIn range: NSRange,
+                 replacementString string: String) -> Bool {
+    return false
   }
 }

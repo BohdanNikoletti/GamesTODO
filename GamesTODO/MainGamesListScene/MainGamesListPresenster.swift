@@ -24,7 +24,6 @@ final class MainGamesListPresenster {
   }
   
   func getGames() {
-    //1
     guard let appDelegate =
       UIApplication.shared.delegate as? AppDelegate else {
         return
@@ -33,11 +32,9 @@ final class MainGamesListPresenster {
     let managedContext =
       appDelegate.persistentContainer.viewContext
     
-    //2
     let fetchRequest =
-      NSFetchRequest<NSManagedObject>(entityName: "Person")
+      NSFetchRequest<NSManagedObject>(entityName: "Game")
     
-    //3
     do {
       let games = try managedContext.fetch(fetchRequest)
       presenter.show(games: games.map { GameItem($0) })

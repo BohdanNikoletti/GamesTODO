@@ -14,11 +14,10 @@ final class MainGamesList: UIViewController {
   @IBOutlet weak private var contentTable: UITableView!
   
   // MARK: - Properties
-//  private let gamesListDataSource = GamesListDataSource()
-//  private let gamesListDelegate = GamesListDelegate()
+  //  private let gamesListDataSource = GamesListDataSource()
+  //  private let gamesListDelegate = GamesListDelegate()
   private var presenter: MainGamesListPresenster?
-  private var games: [GameItem] = [GameItem(title: "Test1", fullDescription: "fullDescription1", genre: "genre1",
-                                                releaseDate: Date(), poster: nil, isFinished: false)]
+  private var games: [GameItem] = [] //GameItem(title: "Test1", fullDescription: "fullDescription1", genre: "genre1",releaseDate: Date(), poster: nil, isFinished: false)
   private var finishedGames: [GameItem] = []
   private let delegatTest = FinishedGamesDataSourceDelegate()
   
@@ -30,7 +29,11 @@ final class MainGamesList: UIViewController {
     prepareTableView()
     delegatTest.games = finishedGames
   }
-  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    presenter?.getGames()
+    
+  }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -46,7 +49,9 @@ final class MainGamesList: UIViewController {
     guard let gameDetail = segue.destination as? GameViewController else { return }
     if segue.identifier == "addNewgame" { gameDetail.isCreationMode = true; return }
     if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row {
-      gameDetail.game = games[selectedTodoGame]
+      if games.count > selectedTodoGame {
+        gameDetail.game = games[selectedTodoGame]
+      }
     } else if let finishedGamesCollection = contentTable.visibleCells.first as? FinishedGamesCell,
       let selectedFinishedGame = finishedGamesCollection.selectedIndexPath?.row {
       gameDetail.game = finishedGames[selectedFinishedGame]
@@ -65,7 +70,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     }
     tableView.isScrollEnabled = true
     return UITableViewAutomaticDimension
-//    return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
+    //    return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -73,7 +78,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 0 { return }
+    if indexPath.section == 0 || games.isEmpty { return }
     performSegue(withIdentifier: "showDetails", sender: self)
   }
   
@@ -145,11 +150,13 @@ extension MainGamesList: MainGamesListView {
   }
   
   func show(games: [GameItem]) {
-    print(games)
+    finishedGames = games.filter { $0.isFinished }
+    self.games = games.filter { !$0.isFinished }
+    contentTable.reloadData()
   }
   
   func show(game: GameItem) {
     self.navigationController?.performSegue(withIdentifier: "showDetails", sender: self)
   }
-
+  
 }

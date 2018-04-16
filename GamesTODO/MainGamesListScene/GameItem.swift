@@ -11,15 +11,14 @@ import CoreData
 
 struct GameItem {
   let title: String
-  let fullDescription: String
+  let fullDescription: String?
   let genre: String
-  let releaseDate: Date?
+  var releaseDate: Date?
   let isFinished: Bool
-  
   private var image: UIImage?
   var poster: UIImage? {
     get {
-      return ImageCachingService.sharedInstance.getImage(key: "") ?? image
+      return ImageCachingService.sharedInstance.getImage(key: imageKey) ?? image
     }
     set {
       image = poster
@@ -27,23 +26,27 @@ struct GameItem {
   }
   
   var imageKey: String {
-    return "\(title)\(releaseDateString)"
+    return "\(title)\(isFinished)"
   }
   
   var releaseDateString: String {
-    guard let releaseDate = self.releaseDate else {
-      return "TBA"
+    set {
+      releaseDate = DateFormatter.base.date(from: releaseDateString)
     }
-    return DateFormatter.base.string(from: releaseDate)
-    
+    get {
+      guard let releaseDate = self.releaseDate else {
+        return "TBA"
+      }
+      return DateFormatter.base.string(from: releaseDate)
+    }
   }
   
   var searchContent: String {
-    return title+fullDescription+genre+releaseDateString
+    return title+(fullDescription ?? "")+genre+releaseDateString
   }
   
   init(title: String, fullDescription: String, genre: String,
-       releaseDate: Date, poster: UIImage?, isFinished: Bool) {
+       releaseDate: Date?, poster: UIImage?, isFinished: Bool = false) {
     self.title = title
     self.fullDescription = fullDescription
     self.genre = genre
