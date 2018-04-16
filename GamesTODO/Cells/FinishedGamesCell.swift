@@ -20,6 +20,7 @@ final class FinishedGamesCell: UITableViewCell {
   var selectedIndexPath: IndexPath? {
     return collectionView.indexPathsForSelectedItems?.first
   }
+  
   func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
     
     collectionView.delegate = dataSourceDelegate

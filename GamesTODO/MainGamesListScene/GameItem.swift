@@ -14,10 +14,16 @@ struct GameItem {
   let fullDescription: String
   let genre: String
   let releaseDate: Date?
-//  let isFinished: Bool
-
+  let isFinished: Bool
+  
+  private var image: UIImage?
   var poster: UIImage? {
-    return ImageCachingService.sharedInstance.getImage(key: "")
+    get {
+      return ImageCachingService.sharedInstance.getImage(key: "") ?? image
+    }
+    set {
+      image = poster
+    }
   }
   
   var imageKey: String {
@@ -36,19 +42,23 @@ struct GameItem {
     return title+fullDescription+genre+releaseDateString
   }
   
-  init (title: String, fullDescription: String, genre: String, releaseDate: Date, poster: UIImage?) {
+  init(title: String, fullDescription: String, genre: String,
+       releaseDate: Date, poster: UIImage?, isFinished: Bool) {
     self.title = title
     self.fullDescription = fullDescription
     self.genre = genre
     self.releaseDate = releaseDate
-//    self.poster = poster
+    self.image = poster
+    self.isFinished = isFinished
   }
+  
   init( _ coreDataModel: NSManagedObject) {
     self.title = (coreDataModel.value(forKey: "title") as? String) ?? ""
     self.fullDescription = (coreDataModel.value(forKey: "fullDescription") as? String) ?? ""
     self.genre = (coreDataModel.value(forKey: "genre") as? String) ?? ""
     self.releaseDate = (coreDataModel.value(forKey: "releaseDate") as? Date) ?? Date()
+    self.isFinished = (coreDataModel.value(forKey: "isFinished") as? Bool) ?? false
 
   }
-
+  
 }

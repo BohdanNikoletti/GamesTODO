@@ -17,7 +17,8 @@ final class MainGamesList: UIViewController {
 //  private let gamesListDataSource = GamesListDataSource()
 //  private let gamesListDelegate = GamesListDelegate()
   private var presenter: MainGamesListPresenster?
-  private var games: [GameItem] = [] //GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)
+  private var games: [GameItem] = [GameItem(title: "Test1", fullDescription: "fullDescription1", genre: "genre1",
+                                                releaseDate: Date(), poster: nil, isFinished: false)]
   private var finishedGames: [GameItem] = []
   private let delegatTest = FinishedGamesDataSourceDelegate()
   
@@ -90,7 +91,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   // MARK: UITableViewDataSource methdos
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    return section == 0 ? 1 : games.count + 1
+    return section == 0 ? 1 : (games.isEmpty ? 1 : games.count)
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {

@@ -10,7 +10,7 @@
 		403B74BA2083CC1D00F3BEFA /* ImagePickerDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */; };
 		403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */; };
 		403B74BE2083D24000F3BEFA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BD2083D24000F3BEFA /* UIViewController+.swift */; };
-		40C4E2102083853D00A6A381 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E20F2083853D00A6A381 /* Game.swift */; };
+		40C4E2102083853D00A6A381 /* GameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E20F2083853D00A6A381 /* GameItem.swift */; };
 		40C4E2122083908600A6A381 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E2112083908600A6A381 /* GameViewController.swift */; };
 		40C4E214208391CA00A6A381 /* GamesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E213208391CA00A6A381 /* GamesListDataSource.swift */; };
 		40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E217208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift */; };
@@ -51,7 +51,7 @@
 		403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegator.swift; sourceTree = "<group>"; };
 		403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDatePicker.swift; sourceTree = "<group>"; };
 		403B74BD2083D24000F3BEFA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		40C4E20F2083853D00A6A381 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		40C4E20F2083853D00A6A381 /* GameItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameItem.swift; sourceTree = "<group>"; };
 		40C4E2112083908600A6A381 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		40C4E213208391CA00A6A381 /* GamesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListDataSource.swift; sourceTree = "<group>"; };
 		40C4E217208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGamesDataSourceDelegate.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 				40C4E217208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift */,
 				A9D0148B207F9E4B0055D468 /* MainGamesList.swift */,
 				A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */,
-				40C4E20F2083853D00A6A381 /* Game.swift */,
+				40C4E20F2083853D00A6A381 /* GameItem.swift */,
 			);
 			path = MainGamesListScene;
 			sourceTree = "<group>";
@@ -370,7 +370,7 @@
 				A9D1E7E9208493C000A40829 /* ImageCachingService.swift in Sources */,
 				A9D1E7E720847F1800A40829 /* GameViewPresenter.swift in Sources */,
 				A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */,
-				40C4E2102083853D00A6A381 /* Game.swift in Sources */,
+				40C4E2102083853D00A6A381 /* GameItem.swift in Sources */,
 				403B74BA2083CC1D00F3BEFA /* ImagePickerDelegator.swift in Sources */,
 				A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */,
 				40C4E2122083908600A6A381 /* GameViewController.swift in Sources */,

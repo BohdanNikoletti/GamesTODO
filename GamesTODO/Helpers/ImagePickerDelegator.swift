@@ -12,8 +12,8 @@ import AVFoundation
 final class ImagePickerDelegator: NSObject {
   
   // MARK: - Properties
-  private weak var callingView: UIViewController!
-  private weak var holder: UIImageView!
+  private weak var callingView: UIViewController?
+  private weak var holder: UIImageView?
 
   // MARK: - Actions
   @objc func imageClicked(_ sender: UIImage) {
@@ -23,7 +23,7 @@ final class ImagePickerDelegator: NSObject {
     let alert = UIAlertController(title: "Add Photo", message: "Choose game photo", preferredStyle: .actionSheet)
     alert.addAction(UIAlertAction(title: "Library", style: .default, handler: { [unowned self] _ in
       imagePicker.sourceType = .photoLibrary
-      self.callingView.present(imagePicker, animated: true, completion: nil)
+      self.callingView?.present(imagePicker, animated: true, completion: nil)
     }))
     alert.addAction(UIAlertAction(title: "Camera",
                                   style: .default,
@@ -31,15 +31,15 @@ final class ImagePickerDelegator: NSObject {
       self.isPermission(granted: {
         [unowned self] in
         imagePicker.sourceType = .camera
-        self.callingView.present(imagePicker, animated: true, completion: nil)
+        self.callingView?.present(imagePicker, animated: true, completion: nil)
         }, denied: {
           [unowned self] in
-          self.callingView.show(message: "Need camera permission", with: "Please go to setting and allow app to use camera")
+          self.callingView?.show(message: "Need camera permission", with: "Please go to setting and allow app to use camera")
       })
       
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-    callingView.present(alert, animated: true)
+    callingView?.present(alert, animated: true)
   }
   
   // MARK: - Public methods
@@ -74,7 +74,7 @@ extension ImagePickerDelegator: UIImagePickerControllerDelegate, UINavigationCon
   func imagePickerController(_ picker: UIImagePickerController,
                              didFinishPickingMediaWithInfo info: [String: Any]) {
     
-    holder.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    holder?.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     picker.dismiss(animated: true, completion: nil)
   }
 }

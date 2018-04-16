@@ -11,7 +11,7 @@ import UIKit
 class ReleaseDatePicker: UIDatePicker {
   
   // MARK: - Properties
-  private let dateFormatter = DateFormatter()
+  private let dateFormatter = DateFormatter.base
   private weak var inputField: UITextField?
   
   // MARK: - Initializers
