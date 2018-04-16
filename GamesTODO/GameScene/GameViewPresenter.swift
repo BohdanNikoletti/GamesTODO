@@ -9,14 +9,14 @@
 import UIKit
 import CoreData
 
-protocol GameView {
+protocol GameView: class {
   func error(message: String)
   func succesAdded(game: GameItem)
 }
 
 final class GameViewPresenter {
   
-  var presenter: GameView!
+  weak var presenter: GameView!
   
   init(presenter: GameView) {
     self.presenter = presenter

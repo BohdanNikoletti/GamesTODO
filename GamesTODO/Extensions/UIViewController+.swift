@@ -25,7 +25,7 @@ extension UIViewController {
     baseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: alerActionHandler))
     baseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: alerActionHandler))
 
-    self.present(baseAlert, animated: true, completion: nil)
+    present(baseAlert, animated: true, completion: nil)
   }
   
 //  func error(handler: (() -> Void )?, for error: Error?) {

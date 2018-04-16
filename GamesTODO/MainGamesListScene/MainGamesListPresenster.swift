@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-protocol MainGamesListView {
+protocol MainGamesListView: class {
   func error(message: String)
   func show(games: [GameItem])
   func show(game: GameItem)
@@ -17,7 +17,7 @@ protocol MainGamesListView {
 
 final class MainGamesListPresenster {
   
-  var presenter: MainGamesListView!
+  weak var presenter: MainGamesListView!
   
   init(presenter: MainGamesListView) {
     self.presenter = presenter
