@@ -9,21 +9,21 @@
 import UIKit
 //
 //final class GamesListDataSource: NSObject, UITableViewDataSource {
-//  
-//  // MARK: - Properties
+
+  // MARK: - Properties
 //  var games: [GameItem] = [GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)]
 //  private let delegatTest = FinishedGamesDataSourceDelegate()
 //  
 //  // MARK: - UITableViewDataSource methdos
 //  func tableView(_ tableView: UITableView,
 //                 numberOfRowsInSection section: Int) -> Int {
-//    return section == 0 ? 1 : games.count
+//    return section == 0 ? 1 : (games.isEmpty ? 1 : games.count)
 //  }
-//  
+//
 //  func numberOfSections(in tableView: UITableView) -> Int {
 //    return 2
 //  }
-//  
+//
 //  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //    if indexPath.section == 0 {
 //      guard let cell = tableView
@@ -34,7 +34,7 @@ import UIKit
 //      cell.setCollectionViewDataSourceDelegate(delegatTest, forRow: indexPath.row)
 //      cell.selectionStyle = .none
 //      return cell
-//    } else {
+//    } else if !games.isEmpty {
 //      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
 //      if cell == nil {
 //        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
@@ -44,6 +44,9 @@ import UIKit
 //      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
 //      cell?.accessoryType = .disclosureIndicator
 //      return cell.unsafelyUnwrapped
+//    } else {
+//      let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
+//      return emptyCell.unsafelyUnwrapped
 //    }
 //  }
 //}
