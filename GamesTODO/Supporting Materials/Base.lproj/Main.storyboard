@@ -83,6 +83,43 @@
                                                                 <segue destination="b3l-Ph-9KL" kind="showDetail" identifier="showDetails" id="UFV-3E-CpE"/>
                                                             </connections>
                                                         </collectionViewCell>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyFinishedGameCell" id="kFY-rJ-Sev">
+                                                            <rect key="frame" x="122" y="-1" width="112" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="70"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <view opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJn-Tt-tua">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="70"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to create" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbS-of-ewd">
+                                                                                <rect key="frame" x="4" y="4" width="104" height="62"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="CbS-of-ewd" firstAttribute="top" secondItem="aJn-Tt-tua" secondAttribute="top" constant="4" id="9Hl-BU-LB7"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="CbS-of-ewd" secondAttribute="bottom" constant="4" id="C8Q-tY-kTO"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="CbS-of-ewd" secondAttribute="trailing" constant="4" id="Zr9-OB-9zV"/>
+                                                                            <constraint firstItem="CbS-of-ewd" firstAttribute="leading" secondItem="aJn-Tt-tua" secondAttribute="leading" constant="4" id="jRc-3X-Yl8"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="aJn-Tt-tua" secondAttribute="trailing" id="1E1-d0-Zhe"/>
+                                                                <constraint firstAttribute="bottom" secondItem="aJn-Tt-tua" secondAttribute="bottom" id="2W9-lg-Ky5"/>
+                                                                <constraint firstItem="aJn-Tt-tua" firstAttribute="leading" secondItem="kFY-rJ-Sev" secondAttribute="leading" id="5ql-Um-UeT"/>
+                                                                <constraint firstItem="aJn-Tt-tua" firstAttribute="top" secondItem="kFY-rJ-Sev" secondAttribute="top" id="MZ9-u7-L5k"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <segue destination="b3l-Ph-9KL" kind="show" identifier="addNewgame" id="E8u-zJ-whI"/>
+                                                            </connections>
+                                                        </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
                                             </subviews>
@@ -95,6 +132,29 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="collectionView" destination="kQf-cb-BlN" id="Dda-yY-qVu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyGamesCell" rowHeight="388" id="Ij2-DO-iN9" customClass="FinishedGamesCell" customModule="GamesTODO" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="118" width="320" height="388"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ij2-DO-iN9" id="m1r-HQ-sn9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="387.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to create" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbd-OH-Zm8">
+                                                    <rect key="frame" x="110" y="183" width="100" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nbd-OH-Zm8" firstAttribute="centerX" secondItem="m1r-HQ-sn9" secondAttribute="centerX" id="IQJ-rO-M8e"/>
+                                                <constraint firstItem="nbd-OH-Zm8" firstAttribute="centerY" secondItem="m1r-HQ-sn9" secondAttribute="centerY" id="vq4-SI-PAb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="b3l-Ph-9KL" kind="show" identifier="addNewgame" id="4Py-6s-kx2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -129,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4" y="-566"/>
+            <point key="canvasLocation" x="-5.625" y="-566.19718309859161"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="bIr-W0-Zzy">
@@ -232,6 +292,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="yzn-37-bF5">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.2901960784" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="1" green="0.80784313730000001" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.2627450980392157" green="0.29019607843137252" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -267,6 +328,6 @@
         <image name="empty-image" width="311" height="207"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UFV-3E-CpE"/>
+        <segue reference="4Py-6s-kx2"/>
     </inferredMetricsTieBreakers>
 </document>

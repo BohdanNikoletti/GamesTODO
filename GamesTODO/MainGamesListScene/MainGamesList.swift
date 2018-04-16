@@ -14,9 +14,12 @@ final class MainGamesList: UIViewController {
   @IBOutlet weak private var contentTable: UITableView!
   
   // MARK: - Properties
-  private let gamesListDataSource = GamesListDataSource()
+//  private let gamesListDataSource = GamesListDataSource()
 //  private let gamesListDelegate = GamesListDelegate()
   private var presenter: MainGamesListPresenster?
+  private var games: [GameItem] = [] //GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)
+  private var finishedGames: [GameItem] = []
+  private let delegatTest = FinishedGamesDataSourceDelegate()
   
   // MARK: - Life cycle events
   override func viewDidLoad() {
@@ -24,7 +27,7 @@ final class MainGamesList: UIViewController {
     presenter = MainGamesListPresenster(presenter: self)
     splitViewController?.delegate = self
     prepareTableView()
-
+    delegatTest.games = finishedGames
   }
   
   override func didReceiveMemoryWarning() {
@@ -34,21 +37,34 @@ final class MainGamesList: UIViewController {
   // MARK: - Private methods
   private func prepareTableView() {
     contentTable.delegate = self//gamesListDelegate
-    contentTable.dataSource = gamesListDataSource
+    contentTable.dataSource = self// gamesListDataSource
   }
   
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let gameDetail = segue.destination as? GameViewController else { return }
-    gameDetail.game = GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil)
-//    gameDetail.isCreationMode = segue.identifier
+    if segue.identifier == "addNewgame" { gameDetail.isCreationMode = true; return }
+    if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row {
+      gameDetail.game = games[selectedTodoGame]
+    } else if let finishedGamesCollection = contentTable.visibleCells.first as? FinishedGamesCell,
+      let selectedFinishedGame = finishedGamesCollection.selectedIndexPath?.row {
+      gameDetail.game = finishedGames[selectedFinishedGame]
+    }
   }
 }
 
-extension MainGamesList: UITableViewDelegate {
+extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   // MARK: - UITableViewDelegate methdos
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
+    if indexPath.section == 0 {
+      return 100
+    } else if indexPath.section == 1 && games.isEmpty {
+      tableView.isScrollEnabled = false
+      return tableView.frame.height - 100
+    }
+    tableView.isScrollEnabled = true
+    return UITableViewAutomaticDimension
+//    return indexPath.section == 0 ? 100 : UITableViewAutomaticDimension
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -69,6 +85,42 @@ extension MainGamesList: UITableViewDelegate {
     label.text = section == 0 ? "Finished games" : "Games to play"
     label.backgroundColor = #colorLiteral(red: 0.3960784314, green: 0.4274509804, blue: 0.4705882353, alpha: 1)
     return label
+  }
+  
+  // MARK: UITableViewDataSource methdos
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return section == 0 ? 1 : games.count + 1
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.section == 0 {
+      guard let cell = tableView
+        .dequeueReusableCell(withIdentifier: "finishedGamesCell",
+                             for: indexPath) as? FinishedGamesCell else {
+                              fatalError("can not cast finishedGamesCell to FinishedGamesCell")
+      }
+      cell.setCollectionViewDataSourceDelegate(delegatTest, forRow: indexPath.row)
+      cell.selectionStyle = .none
+      return cell
+    } else if !games.isEmpty {
+      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+      if cell == nil {
+        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+      }
+      cell?.textLabel?.text = games[indexPath.row].title
+      cell?.detailTextLabel?.text = games[indexPath.row].genre
+      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
+      cell?.accessoryType = .disclosureIndicator
+      return cell.unsafelyUnwrapped
+    } else {
+      let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
+      return emptyCell.unsafelyUnwrapped
+    }
   }
 }
 

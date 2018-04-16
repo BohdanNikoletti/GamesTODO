@@ -21,19 +21,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="78T-MG-oyX">
                                 <rect key="frame" x="32" y="17.5" width="256" height="533"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-ap-b0J">
-                                <rect key="frame" x="141.5" y="518.5" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.80784313725490198" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="78T-MG-oyX" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="6nz-7B-VDE"/>
                             <constraint firstItem="78T-MG-oyX" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="32" id="dhE-SV-CA6"/>
                             <constraint firstAttribute="trailing" secondItem="78T-MG-oyX" secondAttribute="trailing" constant="32" id="fqj-Pi-0p3"/>
-                            <constraint firstItem="sSR-ap-b0J" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hL6-S3-Xgk"/>
-                            <constraint firstItem="sSR-ap-b0J" firstAttribute="top" secondItem="78T-MG-oyX" secondAttribute="bottom" constant="-32" id="qxb-Nx-U0c">
-                                <variation key="heightClass=regular-widthClass=regular" constant="64"/>
-                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

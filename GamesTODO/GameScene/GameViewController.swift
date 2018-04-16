@@ -25,10 +25,11 @@ final class GameViewController: UIViewController {
   private var datePicker: UIDatePicker!
   private var shouldShiftKeyBoard = false
   private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
+  
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
     emptyGameLabel.isHidden = (game != nil && !isCreationMode)
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     NotificationCenter.default.addObserver(self,
@@ -93,7 +94,7 @@ final class GameViewController: UIViewController {
     if game == nil && !isCreationMode { return }
     gameTitleField.text = game?.title
     posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
-    releaseDateField.text = "test"
+    releaseDateField.text = game?.releaseDateString
     descriptionTextView.text = game?.fullDescription
   }
 }
@@ -112,7 +113,7 @@ extension GameViewController: UITextViewDelegate {
     return true
   }
   func textViewDidBeginEditing(_ textView: UITextView) {
-    if textView.text == "GAME DESCRIPTION GOES HERE" {
+    if textView.text == descriptionPlaceHolder {
       textView.text = ""
       textView.textColor = .black
     }
@@ -120,7 +121,7 @@ extension GameViewController: UITextViewDelegate {
   
   func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
-      textView.text = "GAME DESCRIPTION GOES HERE"
+      textView.text = descriptionPlaceHolder
       textView.textColor = .lightGray
     }
     textView.resignFirstResponder()

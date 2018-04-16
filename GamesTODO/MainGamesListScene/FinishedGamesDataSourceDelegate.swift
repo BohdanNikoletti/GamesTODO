@@ -11,19 +11,32 @@ import UIKit
 final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
   
   // MARK: - Properties
-  var games: [GameItem] = [ GameItem(title: "Title", fullDescription: "Description", genre: "Genre", releaseDate: Date(), poster: nil),
-                        GameItem(title: "Title2", fullDescription: "Description2", genre: "Genre3", releaseDate: Date(), poster: nil)]
+  var games: [GameItem] = []
   
   // MARK: - UICollectionViewDelegate & UICollectionViewDataSource methods
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
   }
-  
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return games.isEmpty ? 1 : 2
+  }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    if section == 0 { // Empty sections
+      return games.isEmpty ? 1 : 0
+    }
     return games.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    if indexPath.section == 0 { // Empty section case
+//      guard let cell = collectionView
+//        .dequeueReusableCell(withReuseIdentifier: "emptyFinishedGameCell",
+//                             for: indexPath) as? FinishedGameCell else {
+//                              fatalError("Can not cast finishedGameCell to FinishedGameCell")
+//      }
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyFinishedGameCell", for: indexPath)
+      return cell
+    }
     guard let cell = collectionView
       .dequeueReusableCell(withReuseIdentifier: "finishedGameCell",
                            for: indexPath) as? FinishedGameCell else {

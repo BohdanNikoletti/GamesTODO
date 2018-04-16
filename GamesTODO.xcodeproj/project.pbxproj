@@ -26,6 +26,8 @@
 		A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */; };
 		A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */; };
 		A9D1E7E720847F1800A40829 /* GameViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E620847F1800A40829 /* GameViewPresenter.swift */; };
+		A9D1E7E9208493C000A40829 /* ImageCachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E8208493C000A40829 /* ImageCachingService.swift */; };
+		A9D1E7EC2084B7C900A40829 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		A9D014BC207FA61F0055D468 /* FinishedGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGameCell.swift; sourceTree = "<group>"; };
 		A9D1E7E12080FC4A00A40829 /* MainGamesListPresenster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGamesListPresenster.swift; sourceTree = "<group>"; };
 		A9D1E7E620847F1800A40829 /* GameViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewPresenter.swift; sourceTree = "<group>"; };
+		A9D1E7E8208493C000A40829 /* ImageCachingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingService.swift; sourceTree = "<group>"; };
+		A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 			children = (
 				403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */,
 				403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */,
+				A9D1E7E8208493C000A40829 /* ImageCachingService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				403B74BD2083D24000F3BEFA /* UIViewController+.swift */,
+				A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				403B74BE2083D24000F3BEFA /* UIViewController+.swift in Sources */,
 				A9D014BD207FA61F0055D468 /* FinishedGameCell.swift in Sources */,
 				40C4E214208391CA00A6A381 /* GamesListDataSource.swift in Sources */,
+				A9D1E7E9208493C000A40829 /* ImageCachingService.swift in Sources */,
 				A9D1E7E720847F1800A40829 /* GameViewPresenter.swift in Sources */,
 				A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */,
 				40C4E2102083853D00A6A381 /* Game.swift in Sources */,
@@ -369,6 +376,7 @@
 				40C4E2122083908600A6A381 /* GameViewController.swift in Sources */,
 				A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */,
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
+				A9D1E7EC2084B7C900A40829 /* DateFormatter+.swift in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
 				403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */,
 				40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */,
