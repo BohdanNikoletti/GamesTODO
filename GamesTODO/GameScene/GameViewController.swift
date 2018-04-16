@@ -16,7 +16,6 @@ final class GameViewController: UIViewController {
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var saveButton: UIBarButtonItem!
   @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-  @IBOutlet weak var emptyGameLabel: UILabel!
 
   // MARK: - Properties
   var game: GameItem?
@@ -31,7 +30,6 @@ final class GameViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
-    emptyGameLabel.isHidden = true//(game != nil && !isCreationMode)
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     presenter = GameViewPresenter(presenter: self)
 
@@ -39,8 +37,8 @@ final class GameViewController: UIViewController {
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
     prepareDescriptionViewAndKeyboardHandler()
-//    prepareDescriptionView()
   }
+  
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
@@ -98,11 +96,6 @@ final class GameViewController: UIViewController {
     releaseDateField.inputView = datePicker
     releaseDateField.tintColor = .clear
   }
-//
-//  private func prepareDescriptionView() {
-//    descriptionTextView.textColor = descriptionTextView.text == descriptionPlaceHolder ? UIColor.lightGray : UIColor.black
-//    descriptionTextView.delegate = self
-//  }
   
   private func inflateLayoutIfNeeded() {
     if game == nil /*&& !isCreationMode*/ { return }
@@ -150,6 +143,7 @@ extension GameViewController: UITextViewDelegate {
     shouldShiftKeyBoard = false
   }
 }
+
 // MARK: GameView
 extension GameViewController: GameView {
   func error(message: String) {

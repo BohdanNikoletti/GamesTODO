@@ -9,13 +9,18 @@
 import UIKit
 import CoreData
 
+class GamePresenter {
+  let managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+  let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
+}
+
 protocol MainGamesListView: class {
   func error(message: String)
   func show(games: [GameItem])
   func show(game: GameItem)
 }
 
-final class MainGamesListPresenster {
+final class MainGamesListPresenster: GamePresenter {
   
   weak var presenter: MainGamesListView!
   
@@ -24,17 +29,19 @@ final class MainGamesListPresenster {
   }
   
   func getGames() {
-    guard let appDelegate =
-      UIApplication.shared.delegate as? AppDelegate else {
-        return
-    }
-    let managedContext = appDelegate.persistentContainer.viewContext
-    
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
-    
+//    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//        return
+//    }
+//    let managedContext = appDelegate.persistentContainer.viewContext
+//
+//    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
+    gamesFetchRequest.predicate = nil
     do {
-      let games = try managedContext.fetch(fetchRequest)
-      presenter.show(games: games.map { GameItem($0) })
+      guard let games = try managedContext?.fetch(gamesFetchRequest) else {
+        presenter.error(message: "There is no local games")
+        return
+      }
+      presenter.show(games: games.map { GameItem($0)})
     } catch let error as NSError {
       presenter.error(message: error.localizedDescription)
       print("Could not fetch. \(error), \(error.userInfo)")
@@ -42,24 +49,24 @@ final class MainGamesListPresenster {
   }
 
   func delete(_ game: GameItem){
-    guard let appDelegate =
-      UIApplication.shared.delegate as? AppDelegate else {
-        return
-    }
-    let managedContext =
-      appDelegate.persistentContainer.viewContext
-    
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
-    fetchRequest.predicate = NSPredicate(format: "title = %@", game.title)
+//    guard let appDelegate =
+//      UIApplication.shared.delegate as? AppDelegate else {
+//        return
+//    }
+//    let managedContext =
+//      appDelegate.persistentContainer.viewContext
+//
+//    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
+    gamesFetchRequest.predicate = NSPredicate(format: "title = %@", game.title)
    
     do {
-      let games = try managedContext.fetch(fetchRequest)
-      guard let gameToDelete = games.first else {
+      let games = try managedContext?.fetch(gamesFetchRequest)
+      guard let gameToDelete = games?.first else {
         presenter.error(message: "Game does not exists")
         return
       }
-      managedContext.delete(gameToDelete)
-      try managedContext.save()
+      managedContext?.delete(gameToDelete)
+      try managedContext?.save()
     } catch let error as NSError {
       presenter.error(message: error.localizedDescription)
     }

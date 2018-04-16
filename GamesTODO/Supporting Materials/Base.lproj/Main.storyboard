@@ -229,29 +229,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40s-SB-j52">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <color key="backgroundColor" red="1" green="0.80784313730000001" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                <color key="textColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="trailing" secondItem="e4f-Ic-yoS" secondAttribute="trailing" id="4v4-rx-98p"/>
-                            <constraint firstItem="40s-SB-j52" firstAttribute="bottom" secondItem="e4f-Ic-yoS" secondAttribute="bottom" id="7eB-8K-Pl4"/>
                             <constraint firstItem="vti-yh-PU8" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" constant="4" id="9bM-Pu-4U6"/>
                             <constraint firstItem="aKL-Fe-ggt" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" constant="4" id="ACq-ak-KTo"/>
                             <constraint firstItem="e4f-Ic-yoS" firstAttribute="trailing" secondItem="ncr-Fq-GVQ" secondAttribute="trailing" constant="32" id="C5Z-0n-NXf"/>
                             <constraint firstItem="vti-yh-PU8" firstAttribute="top" secondItem="e4f-Ic-yoS" secondAttribute="top" constant="4" id="FzX-ys-Puq"/>
                             <constraint firstItem="RKL-Qy-oWv" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" constant="32" id="JAV-SZ-DTY"/>
-                            <constraint firstItem="40s-SB-j52" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" id="JAk-oG-Jld"/>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="top" secondItem="aKL-Fe-ggt" secondAttribute="bottom" constant="8" id="OPF-fU-UOe"/>
                             <constraint firstItem="ncr-Fq-GVQ" firstAttribute="top" secondItem="RKL-Qy-oWv" secondAttribute="bottom" constant="8" id="Tuw-X0-Ta6"/>
                             <constraint firstItem="RKL-Qy-oWv" firstAttribute="top" secondItem="vti-yh-PU8" secondAttribute="bottom" constant="8" id="VHk-9j-VN1"/>
-                            <constraint firstItem="40s-SB-j52" firstAttribute="top" secondItem="e4f-Ic-yoS" secondAttribute="top" id="e8S-10-eUJ"/>
-                            <constraint firstItem="40s-SB-j52" firstAttribute="trailing" secondItem="e4f-Ic-yoS" secondAttribute="trailing" id="eLe-vn-h6z"/>
                             <constraint firstItem="e4f-Ic-yoS" firstAttribute="trailing" secondItem="RKL-Qy-oWv" secondAttribute="trailing" constant="32" id="ffK-se-fnO"/>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="leading" secondItem="e4f-Ic-yoS" secondAttribute="leading" id="fwa-MX-3tk"/>
                             <constraint firstItem="ahE-ng-yhe" firstAttribute="bottom" secondItem="e4f-Ic-yoS" secondAttribute="bottom" constant="-8" id="hUm-iK-84t"/>
@@ -272,7 +261,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="ahE-ng-yhe" id="0Nq-S2-GIg"/>
-                        <outlet property="emptyGameLabel" destination="40s-SB-j52" id="R0J-HU-OL9"/>
                         <outlet property="gameTitleField" destination="vti-yh-PU8" id="xT7-CZ-kAP"/>
                         <outlet property="keyboardHeightLayoutConstraint" destination="FzX-ys-Puq" id="vJB-58-z84"/>
                         <outlet property="posterImageView" destination="RKL-Qy-oWv" id="p2V-Vj-HYA"/>
