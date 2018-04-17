@@ -92,19 +92,16 @@
                                                                     <view opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJn-Tt-tua">
                                                                         <rect key="frame" x="0.0" y="0.0" width="112" height="70"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to create" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbS-of-ewd">
-                                                                                <rect key="frame" x="4" y="4" width="104" height="62"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addGameWhite" translatesAutoresizingMaskIntoConstraints="NO" id="PnG-QW-uFt">
+                                                                                <rect key="frame" x="0.0" y="4" width="112" height="62"/>
+                                                                            </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="CbS-of-ewd" firstAttribute="top" secondItem="aJn-Tt-tua" secondAttribute="top" constant="4" id="9Hl-BU-LB7"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="CbS-of-ewd" secondAttribute="bottom" constant="4" id="C8Q-tY-kTO"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="CbS-of-ewd" secondAttribute="trailing" constant="4" id="Zr9-OB-9zV"/>
-                                                                            <constraint firstItem="CbS-of-ewd" firstAttribute="leading" secondItem="aJn-Tt-tua" secondAttribute="leading" constant="4" id="jRc-3X-Yl8"/>
+                                                                            <constraint firstItem="PnG-QW-uFt" firstAttribute="leading" secondItem="aJn-Tt-tua" secondAttribute="leading" id="EFm-fu-6Wx"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="PnG-QW-uFt" secondAttribute="bottom" constant="4" id="VK4-Hz-WiL"/>
+                                                                            <constraint firstItem="PnG-QW-uFt" firstAttribute="top" secondItem="aJn-Tt-tua" secondAttribute="top" constant="4" id="YAE-N2-hW6"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="PnG-QW-uFt" secondAttribute="trailing" id="dO8-LO-Qpi"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -140,18 +137,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="387.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to add new GAME to your list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbd-OH-Zm8">
-                                                    <rect key="frame" x="47" y="136.5" width="226" height="115"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
-                                                    <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sUj-jM-8es" userLabel="EmptyContentViews">
+                                                    <rect key="frame" x="32" y="87.5" width="256" height="212.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to add new GAME to your list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbd-OH-Zm8">
+                                                            <rect key="frame" x="0.0" y="0.0" width="256" height="76.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                                            <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addGameColor" translatesAutoresizingMaskIntoConstraints="NO" id="juA-kK-sYU">
+                                                            <rect key="frame" x="0.0" y="84.5" width="256" height="128"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.99607843139999996" green="0.81568627449999997" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="nbd-OH-Zm8" firstAttribute="centerX" secondItem="m1r-HQ-sn9" secondAttribute="centerX" id="IQJ-rO-M8e"/>
-                                                <constraint firstItem="nbd-OH-Zm8" firstAttribute="leading" secondItem="m1r-HQ-sn9" secondAttribute="leadingMargin" constant="32" id="K8D-ks-ub7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="nbd-OH-Zm8" secondAttribute="trailing" constant="32" id="fnK-gz-7Oy"/>
-                                                <constraint firstItem="nbd-OH-Zm8" firstAttribute="centerY" secondItem="m1r-HQ-sn9" secondAttribute="centerY" id="vq4-SI-PAb"/>
+                                                <constraint firstItem="sUj-jM-8es" firstAttribute="centerY" secondItem="m1r-HQ-sn9" secondAttribute="centerY" id="MhI-le-68R"/>
+                                                <constraint firstAttribute="trailing" secondItem="sUj-jM-8es" secondAttribute="trailing" constant="32" id="Yq7-LB-B8r"/>
+                                                <constraint firstItem="sUj-jM-8es" firstAttribute="leading" secondItem="m1r-HQ-sn9" secondAttribute="leading" constant="32" id="uQc-SF-10p"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -330,17 +335,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="348.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no  mached GAMES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yy-21-tUL">
-                                            <rect key="frame" x="32" y="136" width="256" height="76.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
-                                            <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hyg-S0-Mjr" userLabel="EmptyResultsViews">
+                                            <rect key="frame" x="32" y="68" width="256" height="212.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no  mached GAMES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yy-21-tUL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="76.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                                    <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyGames" translatesAutoresizingMaskIntoConstraints="NO" id="BoL-tK-sBK">
+                                                    <rect key="frame" x="0.0" y="84.5" width="256" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.99607843139999996" green="0.81568627449999997" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="7Yy-21-tUL" firstAttribute="leading" secondItem="peg-Kv-zBA" secondAttribute="leading" constant="32" id="JpZ-zV-BE5"/>
-                                        <constraint firstItem="7Yy-21-tUL" firstAttribute="centerY" secondItem="peg-Kv-zBA" secondAttribute="centerY" id="VFp-J9-Ce2"/>
-                                        <constraint firstAttribute="trailing" secondItem="7Yy-21-tUL" secondAttribute="trailing" constant="32" id="w9G-bb-YOJ"/>
+                                        <constraint firstItem="Hyg-S0-Mjr" firstAttribute="centerY" secondItem="peg-Kv-zBA" secondAttribute="centerY" id="5kL-GI-yL1"/>
+                                        <constraint firstItem="Hyg-S0-Mjr" firstAttribute="leading" secondItem="peg-Kv-zBA" secondAttribute="leading" constant="32" id="A0s-U3-8NG"/>
+                                        <constraint firstAttribute="trailing" secondItem="Hyg-S0-Mjr" secondAttribute="trailing" constant="32" id="Gh0-ql-B7q"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -390,7 +404,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addGameColor" width="128" height="128"/>
+        <image name="addGameWhite" width="128" height="128"/>
         <image name="empty-image" width="311" height="207"/>
+        <image name="emptyGames" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AkM-uG-z4b"/>
