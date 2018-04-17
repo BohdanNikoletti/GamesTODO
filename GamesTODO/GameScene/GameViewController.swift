@@ -32,7 +32,13 @@ final class GameViewController: UIViewController {
     navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     presenter = GameViewPresenter(presenter: self)
-
+    if game == nil {
+      title = "Create Game"
+    } else {
+      title = "Edit game"
+    }
+    gameTitleField.becomeFirstResponder()
+    navigationController?.navigationBar.shadowImage = UIImage()
     prepareDatePicker()
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
@@ -78,13 +84,15 @@ final class GameViewController: UIViewController {
       // TODO: Show error
       return
     }
-    if game == nil {
+    if let game = self.game {
+      presenter?.update(game: game)
+    } else {
       var releaseDate: Date?
       if let dateString = releaseDateField.text {
         releaseDate = DateFormatter.base.date(from: dateString)
       }
       game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-      releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
+                      releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
   }

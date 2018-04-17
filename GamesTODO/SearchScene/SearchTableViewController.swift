@@ -29,6 +29,7 @@ final class SearchTableViewController: UITableViewController {
     searchBar.delegate = self
     presenter = SearchGameViewPresenter(presenter: self)
     presenter?.getGames()
+    searchBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
   }
   
   override func didReceiveMemoryWarning() {
@@ -71,9 +72,9 @@ final class SearchTableViewController: UITableViewController {
       if cell == nil {
         cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
       }
-      cell?.textLabel?.text = games[indexPath.row].title
-      cell?.detailTextLabel?.text = games[indexPath.row].genre
-      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
+      cell?.textLabel?.text = filteredGames[indexPath.row].title
+      cell?.detailTextLabel?.text = filteredGames[indexPath.row].genre
+      cell?.imageView?.image = filteredGames[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
       cell?.accessoryType = .disclosureIndicator
       return cell.unsafelyUnwrapped
     } else { // Empty search
@@ -95,7 +96,18 @@ extension SearchTableViewController: SearchGameView {
 }
 // MARK: - UISearchBarDelegate extension
 extension SearchTableViewController: UISearchBarDelegate {
-  
+  func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+    searchBar.setShowsCancelButton(true, animated: true)
+    return true
+  }
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.setShowsCancelButton(false, animated: true)
+    searchBar.resignFirstResponder()
+  }
+  func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+    searchBar.setShowsCancelButton(false, animated: true)
+    return true
+  }
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     if !searchText.isEmpty {
       filteredGames = games.filter { game in

@@ -18,8 +18,8 @@ protocol MainGamesListView: class {
 final class MainGamesListPresenster {
   
   // MARK: - Properties
-  weak var presenter: MainGamesListView!
-  weak var managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+  private weak var presenter: MainGamesListView!
+  private weak var managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
   
   // MARK: - Initializers
   init(presenter: MainGamesListView) {
@@ -54,6 +54,7 @@ final class MainGamesListPresenster {
         return
       }
       managedContext?.delete(gameToDelete)
+      try ImageCachingService.sharedInstance.delete(game.imageKey)
       try managedContext?.save()
     } catch let error as NSError {
       presenter.error(message: error.localizedDescription)

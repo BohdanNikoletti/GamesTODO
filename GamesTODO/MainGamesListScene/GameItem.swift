@@ -41,7 +41,7 @@ struct GameItem {
   }
   
   var searchContent: String {
-    return title+(fullDescription ?? "")+genre+releaseDateString
+    return title+(fullDescription?.trimmingCharacters(in: .whitespaces) ?? "")+genre+releaseDateString
   }
   
   // MARK: - Initializers

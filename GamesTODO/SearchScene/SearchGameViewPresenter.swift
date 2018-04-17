@@ -31,7 +31,6 @@ final class SearchGameViewPresenter {
     let managedContext = appDelegate.persistentContainer.viewContext
     
     let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
-    gamesFetchRequest.predicate = nil
     do {
       let games = try managedContext.fetch(gamesFetchRequest)
       presenter.show(games: games.map { GameItem($0) })
