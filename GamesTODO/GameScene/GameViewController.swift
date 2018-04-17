@@ -69,7 +69,7 @@ final class GameViewController: UIViewController {
                    completion: nil)
   }
   
-  @objc func descriptionDoneCLicked(){
+  @objc func descriptionDoneCLicked() {
     dismissKeyboard()
   }
   

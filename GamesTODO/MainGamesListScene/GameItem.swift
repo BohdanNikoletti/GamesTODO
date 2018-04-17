@@ -10,12 +10,16 @@ import UIKit
 import CoreData
 
 struct GameItem {
+  
+  // MARK: Propeteis
   let title: String
   let fullDescription: String?
   let genre: String
   var releaseDate: Date?
   let isFinished: Bool
   private var image: UIImage?
+  
+  // MARK: - Computed variables
   var poster: UIImage? {
     get {
       return ImageCachingService.sharedInstance.getImage(key: imageKey) ?? image
@@ -30,18 +34,17 @@ struct GameItem {
   }
   
   var releaseDateString: String {
-    get {
-      guard let releaseDate = self.releaseDate else {
-        return "TBA"
-      }
-      return DateFormatter.base.string(from: releaseDate)
+    guard let releaseDate = self.releaseDate else {
+      return "TBA"
     }
+    return DateFormatter.base.string(from: releaseDate)
   }
   
   var searchContent: String {
     return title+(fullDescription ?? "")+genre+releaseDateString
   }
   
+  // MARK: - Initializers
   init(title: String, fullDescription: String, genre: String,
        releaseDate: Date?, poster: UIImage?, isFinished: Bool = false) {
     self.title = title

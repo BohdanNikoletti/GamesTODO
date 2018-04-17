@@ -12,7 +12,7 @@ typealias AppAlertAction = (action: (() -> Void )?, name: String)
 extension UIViewController {
   
   func show(message: String?, with title: String?,
-            succesActionHandler:AppAlertAction? = nil,
+            succesActionHandler: AppAlertAction? = nil,
             destructiveActionHandler: AppAlertAction? = nil) {
     let baseAlert = UIAlertController(title: title,
                                       message: message,
@@ -26,7 +26,7 @@ extension UIViewController {
     if let alertActionTittle = succesActionHandler?.name {
       baseAlert.addAction(UIAlertAction(title: alertActionTittle, style: .default, handler: alerActionHandler))
     }
-    if let destructiveActionTittle = destructiveActionHandler?.name{
+    if let destructiveActionTittle = destructiveActionHandler?.name {
       baseAlert.addAction(UIAlertAction(title: destructiveActionTittle, style: .destructive, handler: destructiveAlerActionHandler))
     }
     if baseAlert.actions.isEmpty { // create default action

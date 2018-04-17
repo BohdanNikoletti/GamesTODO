@@ -11,11 +11,12 @@ import UIKit
 final class ImageCachingService {
   
   static let sharedInstance = ImageCachingService()
-  
+  private let fileManager = FileManager.default
+
   private init() { }
   
   private func getDocumentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
   }
   
@@ -27,7 +28,6 @@ final class ImageCachingService {
   }
   
   func getImage(key: String) -> UIImage? {
-    let fileManager = FileManager.default
     let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
     if fileManager.fileExists(atPath: filename.path) {
       return UIImage(contentsOfFile: filename.path)
@@ -35,14 +35,22 @@ final class ImageCachingService {
     return nil
   }
   
+  func delete( _ key: String) throws {
+//    let fileManager = FileManager.default
+    let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
+    if fileManager.fileExists(atPath: filename.path) {
+      try fileManager.removeItem(atPath: filename.path)
+    }
+    
+  }
   func refresh() {
     let path = getDocumentsDirectory().path
-    guard let items = try? FileManager.default.contentsOfDirectory(atPath: path) else { return }
+    guard let items = try? fileManager.contentsOfDirectory(atPath: path) else { return }
     
     for item in items {
       if !item.contains(".png") { continue }
       let completePath = path.appending("/").appending(item)
-      try? FileManager.default.removeItem(atPath: completePath)
+      try? fileManager.removeItem(atPath: completePath)
     }
   }
 }

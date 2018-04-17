@@ -19,15 +19,15 @@ final class MainGamesList: UIViewController {
   private var presenter: MainGamesListPresenster?
   private var games: [GameItem] = []
   private var finishedGames: [GameItem] = []
-  private let delegatTest = FinishedGamesDataSourceDelegate()
+  private let finishedGamesSourceDelegate = FinishedGamesDataSourceDelegate()
   
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter = MainGamesListPresenster(presenter: self)
-    splitViewController?.delegate = self
+//    splitViewController?.delegate = self
     prepareTableView()
-    delegatTest.games = finishedGames
+    finishedGamesSourceDelegate.games = finishedGames
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -127,7 +127,8 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
                              for: indexPath) as? FinishedGamesCell else {
                               fatalError("can not cast finishedGamesCell to FinishedGamesCell")
       }
-      cell.setCollectionViewDataSourceDelegate(delegatTest, forRow: indexPath.row)
+//      guard let finishedGamesSourceDelegate = self.finishedGamesSourceDelegate else { fatalError("FinishedGamesDataSourceDelegate is nil") }
+      cell.setCollectionViewDataSourceDelegate(finishedGamesSourceDelegate, forRow: indexPath.row)
       cell.selectionStyle = .none
       return cell
     } else if !games.isEmpty {
@@ -147,18 +148,18 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   }
 }
 
-extension MainGamesList: UISplitViewControllerDelegate {
-  func splitViewController(_ splitViewController: UISplitViewController,
-                           collapseSecondary secondaryViewController: UIViewController,
-                           onto primaryViewController: UIViewController) -> Bool {
-    if let gameViewController = secondaryViewController as? GameViewController {
-      if gameViewController.game == nil {
-        return true
-      }
-    }
-    return false
-  }
-}
+//extension MainGamesList: UISplitViewControllerDelegate {
+//  func splitViewController(_ splitViewController: UISplitViewController,
+//                           collapseSecondary secondaryViewController: UIViewController,
+//                           onto primaryViewController: UIViewController) -> Bool {
+//    if let gameViewController = secondaryViewController as? GameViewController {
+//      if gameViewController.game == nil {
+//        return true
+//      }
+//    }
+//    return false
+//  }
+//}
 
 extension MainGamesList: MainGamesListView {
   

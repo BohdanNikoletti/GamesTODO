@@ -28,6 +28,7 @@
 		A9D1E7E720847F1800A40829 /* GameViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E620847F1800A40829 /* GameViewPresenter.swift */; };
 		A9D1E7E9208493C000A40829 /* ImageCachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7E8208493C000A40829 /* ImageCachingService.swift */; };
 		A9D1E7EC2084B7C900A40829 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */; };
+		A9D1E7EE2085D75F00A40829 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1E7ED2085D75F00A40829 /* SearchTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		A9D1E7E620847F1800A40829 /* GameViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewPresenter.swift; sourceTree = "<group>"; };
 		A9D1E7E8208493C000A40829 /* ImageCachingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingService.swift; sourceTree = "<group>"; };
 		A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		A9D1E7ED2085D75F00A40829 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				40C4E20D2083839300A6A381 /* Cells */,
 				A9D1E7E52080FCCF00A40829 /* MainGamesListScene */,
 				403B74B82083CADF00F3BEFA /* GameScene */,
+				A9D1E7EF2085D76700A40829 /* SearchScene */,
 				40C4E20E208383A700A6A381 /* Supporting Materials */,
 				A9D01498207F9E4D0055D468 /* Info.plist */,
 				A9D01490207F9E4B0055D468 /* GamesTODO.xcdatamodeld */,
@@ -213,6 +216,14 @@
 				40C4E20F2083853D00A6A381 /* GameItem.swift */,
 			);
 			path = MainGamesListScene;
+			sourceTree = "<group>";
+		};
+		A9D1E7EF2085D76700A40829 /* SearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				A9D1E7ED2085D75F00A40829 /* SearchTableViewController.swift */,
+			);
+			path = SearchScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +389,7 @@
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
 				A9D1E7EC2084B7C900A40829 /* DateFormatter+.swift in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
+				A9D1E7EE2085D75F00A40829 /* SearchTableViewController.swift in Sources */,
 				403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */,
 				40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */,
 			);
