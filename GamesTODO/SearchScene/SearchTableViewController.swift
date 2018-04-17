@@ -8,88 +8,104 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+final class SearchTableViewController: UITableViewController {
+  
+  // MARK: - Outlets
+  @IBOutlet weak private var searchBar: UISearchBar!
+  
+  // MARK: - Properties
+  private var games: [GameItem] = []
+  private var filteredGames: [GameItem] = [] {
+    didSet {
+      tableView.reloadData()
     }
+  }
+  private var presenter: SearchGameViewPresenter?
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  // MARK: - Lifecycle events
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
+    searchBar.delegate = self
+    presenter = SearchGameViewPresenter(presenter: self)
+    presenter?.getGames()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - UITableViewDelegate methdos
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.section == 0 {
+      tableView.isScrollEnabled = false
+      return tableView.frame.height
     }
+    tableView.isScrollEnabled = true
+    return UITableViewAutomaticDimension
+  }
+  
+  override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 0.01
+  }
+  // TODO: handle selection
+//  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    if indexPath.section == 0 || games.isEmpty { return }
+//    performSegue(withIdentifier: "showDetails", sender: self)
+//  }
+//
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+  // MARK: UITableViewDataSource methdos
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return section == 0 ? (filteredGames.isEmpty ? 1 : 0) : filteredGames.count
+  }
+  
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.section == 1 {
+      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+      if cell == nil {
+        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+      }
+      cell?.textLabel?.text = games[indexPath.row].title
+      cell?.detailTextLabel?.text = games[indexPath.row].genre
+      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
+      cell?.accessoryType = .disclosureIndicator
+      return cell.unsafelyUnwrapped
+    } else { // Empty search
+      let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
+      return emptyCell.unsafelyUnwrapped
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+  }
+}
+extension SearchTableViewController: SearchGameView {
+  func error(message: String) {
+    show(message: "Something went wrong(", with: message)
+  }
+  
+  func show(games: [GameItem]) {
+    self.games = games
+    filteredGames = games
+  }
+  
+}
+// MARK: - UISearchBarDelegate extension
+extension SearchTableViewController: UISearchBarDelegate {
+  
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    if !searchText.isEmpty {
+      filteredGames = games.filter { game in
+        return game.searchContent.lowercased().contains(searchText.lowercased())
+      }
+    } else {
+      filteredGames = games
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  }
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+  }
 }

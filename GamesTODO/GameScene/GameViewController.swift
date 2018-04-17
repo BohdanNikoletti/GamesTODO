@@ -10,12 +10,12 @@ import UIKit
 
 final class GameViewController: UIViewController {
   // MARK: - Outlets
-  @IBOutlet weak var gameTitleField: UITextField!
-  @IBOutlet weak var posterImageView: UIImageView!
-  @IBOutlet weak var releaseDateField: UITextField!
-  @IBOutlet weak var descriptionTextView: UITextView!
-  @IBOutlet weak var saveButton: UIBarButtonItem!
-  @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+  @IBOutlet weak private var gameTitleField: UITextField!
+  @IBOutlet weak private var posterImageView: UIImageView!
+  @IBOutlet weak private var releaseDateField: UITextField!
+  @IBOutlet weak private var descriptionTextView: UITextView!
+  @IBOutlet weak private var saveButton: UIBarButtonItem!
+  @IBOutlet weak private var keyboardHeightLayoutConstraint: NSLayoutConstraint?
 
   // MARK: - Properties
   var game: GameItem?

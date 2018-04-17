@@ -148,19 +148,6 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   }
 }
 
-//extension MainGamesList: UISplitViewControllerDelegate {
-//  func splitViewController(_ splitViewController: UISplitViewController,
-//                           collapseSecondary secondaryViewController: UIViewController,
-//                           onto primaryViewController: UIViewController) -> Bool {
-//    if let gameViewController = secondaryViewController as? GameViewController {
-//      if gameViewController.game == nil {
-//        return true
-//      }
-//    }
-//    return false
-//  }
-//}
-
 extension MainGamesList: MainGamesListView {
   
   func error(message: String) {
