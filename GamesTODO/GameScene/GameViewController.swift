@@ -66,7 +66,7 @@ final class GameViewController: UIViewController {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
       let endframeSize = endFrame?.size.height ?? 0
-      self.keyboardHeightLayoutConstraint?.constant = -endframeSize+32
+      self.keyboardHeightLayoutConstraint!.constant = -endframeSize+72
     }
     UIView.animate(withDuration: duration,
                    delay: TimeInterval(0),
@@ -84,17 +84,28 @@ final class GameViewController: UIViewController {
       // TODO: Show error
       return
     }
+    var releaseDate: Date?
+    if let dateString = releaseDateField.text {
+      releaseDate = DateFormatter.base.date(from: dateString)
+    }
     if let game = self.game {
-      presenter?.update(game: game)
+//      game.title = title
+//      game.fullDescription = descriptionTextView.text
+//      game.genre = "genre1"
+//      game.releaseDate = releaseDate
+//      game.poster = posterImageView.image
+//      game.isFinished = false
+      let newGameData = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
+                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
+      presenter?.update(game: game, with: newGameData)
     } else {
-      var releaseDate: Date?
-      if let dateString = releaseDateField.text {
-        releaseDate = DateFormatter.base.date(from: dateString)
-      }
+
       game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
                       releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
+    dismissKeyboard()
+
   }
   
   // MARK: - Private methods

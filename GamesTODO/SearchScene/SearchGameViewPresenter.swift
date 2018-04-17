@@ -16,12 +16,15 @@ protocol SearchGameView: class {
 
 final class SearchGameViewPresenter {
   
+  // MARK: - Properties
   weak var presenter: SearchGameView!
   
+  // MARK: - Initializers
   init(presenter: SearchGameView) {
     self.presenter = presenter
   }
   
+  // MARK: - Public methods
   func getGames() {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

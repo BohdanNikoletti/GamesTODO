@@ -25,7 +25,7 @@ final class GameViewPresenter {
     self.presenter = presenter
   }
   
-  // MARK: Public methods
+  // MARK: - Public methods
   func save(game: GameItem) {
 
     guard let managedContext = self.managedContext else {
@@ -50,7 +50,7 @@ final class GameViewPresenter {
     }
   }
   
-  func update(game: GameItem) {
+  func update(game: GameItem, with newData: GameItem) {
     let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
     gamesFetchRequest.predicate = NSPredicate(format: "title = %@", game.title)
     do {
@@ -59,10 +59,8 @@ final class GameViewPresenter {
         presenter.error(message: "Game does not exists")
         return
       }
-      print(gameToUpdate)
-      setCoredata(model: gameToUpdate, from: game)
+      setCoredata(model: gameToUpdate, from: newData)
       try managedContext?.save()
-      print(gameToUpdate)
     } catch let error as NSError {
       presenter.error(message: error.localizedDescription)
     }
