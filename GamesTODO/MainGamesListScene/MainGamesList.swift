@@ -27,7 +27,6 @@ final class MainGamesList: UIViewController {
     presenter = MainGamesListPresenster(presenter: self)
 //    splitViewController?.delegate = self
     prepareTableView()
-    finishedGamesSourceDelegate.games = finishedGames
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -48,13 +47,13 @@ final class MainGamesList: UIViewController {
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let gameDetail = segue.destination as? GameViewController else { return }
-    if segue.identifier == "addNewgame" { gameDetail.isCreationMode = true; return }
-    if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row {
-      if games.count > selectedTodoGame {
-        gameDetail.game = games[selectedTodoGame]
-      }
+    if segue.identifier == "addNewFinishedGame"  { gameDetail.isFinishedGame = true }
+    if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row,
+      games.count > selectedTodoGame{
+      gameDetail.game = games[selectedTodoGame]
     } else if let finishedGamesCollection = contentTable.visibleCells.first as? FinishedGamesCell,
-      let selectedFinishedGame = finishedGamesCollection.selectedIndexPath?.row {
+      let selectedFinishedGame = finishedGamesCollection.selectedIndexPath?.row,
+        finishedGames.count > selectedFinishedGame{
       gameDetail.game = finishedGames[selectedFinishedGame]
     }
   }
@@ -157,6 +156,7 @@ extension MainGamesList: MainGamesListView {
   func show(games: [GameItem]) {
     finishedGames = games.filter { $0.isFinished }
     self.games = games.filter { !$0.isFinished }
+    finishedGamesSourceDelegate.games = finishedGames
     contentTable.reloadData()
   }
   

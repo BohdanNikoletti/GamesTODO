@@ -43,7 +43,6 @@ final class FinishedGameCell: UICollectionViewCell {
     layer.shadowOffset = CGSize(width: 0, height: 2.0)
     layer.shadowRadius = 2.0
     layer.shadowOpacity = 1.0
-    layer.masksToBounds = false
     layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
   }
 }

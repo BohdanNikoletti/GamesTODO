@@ -30,6 +30,7 @@ final class FinishedGamesDataSourceDelegate: NSObject, UICollectionViewDelegate,
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 0 { // Empty section case
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyFinishedGameCell", for: indexPath)
+      cell.layer.cornerRadius = 5
       return cell
     }
     guard let cell = collectionView

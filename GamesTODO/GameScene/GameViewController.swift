@@ -19,7 +19,7 @@ final class GameViewController: UIViewController {
 
   // MARK: - Properties
   var game: GameItem?
-  var isCreationMode = false
+  var isFinishedGame = false
   private let gameImagePicker = ImagePickerDelegator()
   private var datePicker: UIDatePicker?
   private var shouldShiftKeyBoard = false
@@ -89,19 +89,13 @@ final class GameViewController: UIViewController {
       releaseDate = DateFormatter.base.date(from: dateString)
     }
     if let game = self.game {
-//      game.title = title
-//      game.fullDescription = descriptionTextView.text
-//      game.genre = "genre1"
-//      game.releaseDate = releaseDate
-//      game.poster = posterImageView.image
-//      game.isFinished = false
       let newGameData = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
+                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: isFinishedGame)
       presenter?.update(game: game, with: newGameData)
     } else {
 
       game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-                      releaseDate: releaseDate, poster: posterImageView.image, isFinished: false)
+                      releaseDate: releaseDate, poster: posterImageView.image, isFinished: isFinishedGame)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
     dismissKeyboard()
@@ -149,7 +143,7 @@ extension GameViewController: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.text == descriptionPlaceHolder {
       textView.text = ""
-      textView.textColor = .black
+      textView.textColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
     }
   }
   

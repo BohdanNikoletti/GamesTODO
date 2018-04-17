@@ -113,7 +113,7 @@
                                                                 <constraint firstItem="aJn-Tt-tua" firstAttribute="top" secondItem="kFY-rJ-Sev" secondAttribute="top" id="MZ9-u7-L5k"/>
                                                             </constraints>
                                                             <connections>
-                                                                <segue destination="b3l-Ph-9KL" kind="show" identifier="addNewgame" id="E8u-zJ-whI"/>
+                                                                <segue destination="b3l-Ph-9KL" kind="show" identifier="addNewFinishedGame" id="E8u-zJ-whI"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -410,6 +410,6 @@
         <image name="emptyGames" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AkM-uG-z4b"/>
+        <segue reference="E8u-zJ-whI"/>
     </inferredMetricsTieBreakers>
 </document>
