@@ -36,7 +36,7 @@ final class GameViewController: UIViewController {
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
     prepareDescriptionViewAndKeyboardHandler()
-    customizeTextFields()
+//    customizeTextFields()
 
   }
 
@@ -44,10 +44,12 @@ final class GameViewController: UIViewController {
     super.viewDidAppear(animated)
     gameTitleField.becomeFirstResponder()
   }
-//  override func viewDidLayoutSubviews() {
-//    super.viewDidLayoutSubviews()
-//    customizeTextFields()
-//  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    customizeTextFields()
+  }
+  
   deinit {
     NotificationCenter.default.removeObserver(self)
   }

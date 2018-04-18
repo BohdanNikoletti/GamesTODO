@@ -12,11 +12,11 @@ import CoreData
 struct GameItem {
   
   // MARK: - Propeteis
-  var title: String
-  var fullDescription: String?
-  var genre: String
-  var releaseDate: Date?
-  var isFinished: Bool
+  let title: String
+  let fullDescription: String?
+  let genre: String
+  let releaseDate: Date?
+  let isFinished: Bool
   private var image: UIImage?
   
   // MARK: - Computed variables

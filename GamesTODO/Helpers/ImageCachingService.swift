@@ -29,8 +29,9 @@ final class ImageCachingService {
   
   func getImage(key: String) -> UIImage? {
     let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
-    if fileManager.fileExists(atPath: filename.path) {
-      return UIImage(contentsOfFile: filename.path)
+    if fileManager.fileExists(atPath: filename.path),
+      let imageData = fileManager.contents(atPath: filename.path) {
+      return UIImage(data: imageData)
     }
     return nil
   }

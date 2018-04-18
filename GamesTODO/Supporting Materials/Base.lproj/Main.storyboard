@@ -238,16 +238,19 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="q5i-sx-qWa" userLabel="AditionalInfoGroup">
-                                <rect key="frame" x="32" y="180" width="256" height="30"/>
+                                <rect key="frame" x="32" y="180" width="256" height="32"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00/00/0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncr-Fq-GVQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00/00/0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncr-Fq-GVQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="Y1k-k0-UwM"/>
+                                        </constraints>
                                         <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Genre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvG-aw-2ff">
-                                        <rect key="frame" x="130" y="0.0" width="126" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Genre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvG-aw-2ff">
+                                        <rect key="frame" x="130" y="0.0" width="126" height="32"/>
                                         <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -255,16 +258,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-s4-blO" userLabel="FinishedViewHolder">
-                                <rect key="frame" x="91.5" y="226" width="137.5" height="32"/>
+                                <rect key="frame" x="91.5" y="228" width="137.5" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finished?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dO8-Mj-G8a">
-                                        <rect key="frame" x="0.0" y="6" width="72.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="5" width="72.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.26274509800000001" green="0.2901960784" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fEq-nO-f5L">
-                                        <rect key="frame" x="88.5" y="0.5" width="51" height="31"/>
+                                        <rect key="frame" x="88.5" y="0.0" width="51" height="30"/>
                                         <color key="onTintColor" red="1" green="0.80784313730000001" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </switch>
                                 </subviews>
@@ -329,6 +332,7 @@
                         <outlet property="posterImageView" destination="RKL-Qy-oWv" id="p2V-Vj-HYA"/>
                         <outlet property="releaseDateField" destination="ncr-Fq-GVQ" id="cIi-Ca-sXO"/>
                         <outlet property="saveButton" destination="byl-f7-WgX" id="UjO-OB-u4h"/>
+                        <segue destination="AAW-2e-OSo" kind="show" identifier="showGenres" id="eat-BX-CIz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MY4-rg-DFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,6 +411,34 @@
             </objects>
             <point key="canvasLocation" x="751.875" y="255.63380281690141"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="E0f-dZ-ZUg">
+            <objects>
+                <tableViewController id="AAW-2e-OSo" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PEI-vI-o3v">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rev-0B-mjP">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rev-0B-mjP" id="KA8-ry-6Ko">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AAW-2e-OSo" id="yKo-L3-aFO"/>
+                            <outlet property="delegate" destination="AAW-2e-OSo" id="nIn-IX-iBs"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rMK-Nl-hyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-729" y="256"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MW9-LE-FzA">
             <objects>
@@ -441,6 +473,6 @@
         <image name="emptyGames" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AkM-uG-z4b"/>
+        <segue reference="E8u-zJ-whI"/>
     </inferredMetricsTieBreakers>
 </document>
