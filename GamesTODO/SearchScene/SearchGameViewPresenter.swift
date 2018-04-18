@@ -17,7 +17,7 @@ protocol SearchGameView: class {
 final class SearchGameViewPresenter {
   
   // MARK: - Properties
-  weak var presenter: SearchGameView!
+  weak var presenter: SearchGameView?
   
   // MARK: - Initializers
   init(presenter: SearchGameView) {
@@ -36,9 +36,9 @@ final class SearchGameViewPresenter {
     let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
     do {
       let games = try managedContext.fetch(gamesFetchRequest)
-      presenter.show(games: games.map { GameItem($0) })
+      presenter?.show(games: games.map { GameItem($0) })
     } catch let error as NSError {
-      presenter.error(message: error.localizedDescription)
+      presenter?.error(message: error.localizedDescription)
       print("Could not fetch. \(error), \(error.userInfo)")
     }
   }

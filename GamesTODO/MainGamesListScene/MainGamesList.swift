@@ -19,13 +19,12 @@ final class MainGamesList: UIViewController {
   private var presenter: MainGamesListPresenster?
   private var games: [GameItem] = []
   private var finishedGames: [GameItem] = []
-  private let finishedGamesSourceDelegate = FinishedGamesDataSourceDelegate()
+  private let finishedGamesSourceDelegator = FinishedGamesDataSourceDelegate()
   
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter = MainGamesListPresenster(presenter: self)
-//    splitViewController?.delegate = self
     prepareTableView()
   }
   override func viewDidAppear(_ animated: Bool) {
@@ -47,13 +46,13 @@ final class MainGamesList: UIViewController {
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let gameDetail = segue.destination as? GameViewController else { return }
-    if segue.identifier == "addNewFinishedGame"  { gameDetail.isFinishedGame = true }
+    if segue.identifier == "addNewFinishedGame" { gameDetail.isFinishedGame = true }
     if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row,
-      games.count > selectedTodoGame{
+      games.count > selectedTodoGame {
       gameDetail.game = games[selectedTodoGame]
     } else if let finishedGamesCollection = contentTable.visibleCells.first as? FinishedGamesCell,
       let selectedFinishedGame = finishedGamesCollection.selectedIndexPath?.row,
-        finishedGames.count > selectedFinishedGame{
+        finishedGames.count > selectedFinishedGame {
       gameDetail.game = finishedGames[selectedFinishedGame]
     }
   }
@@ -126,8 +125,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
                              for: indexPath) as? FinishedGamesCell else {
                               fatalError("can not cast finishedGamesCell to FinishedGamesCell")
       }
-//      guard let finishedGamesSourceDelegate = self.finishedGamesSourceDelegate else { fatalError("FinishedGamesDataSourceDelegate is nil") }
-      cell.setCollectionViewDataSourceDelegate(finishedGamesSourceDelegate, forRow: indexPath.row)
+      cell.setCollectionViewDataSourceDelegate(finishedGamesSourceDelegator, forRow: indexPath.row)
       cell.selectionStyle = .none
       return cell
     } else if !games.isEmpty {
@@ -156,7 +154,7 @@ extension MainGamesList: MainGamesListView {
   func show(games: [GameItem]) {
     finishedGames = games.filter { $0.isFinished }
     self.games = games.filter { !$0.isFinished }
-    finishedGamesSourceDelegate.games = finishedGames
+    finishedGamesSourceDelegator.games = finishedGames
     contentTable.reloadData()
   }
   

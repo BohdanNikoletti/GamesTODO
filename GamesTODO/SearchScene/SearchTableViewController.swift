@@ -32,6 +32,7 @@ final class SearchTableViewController: UITableViewController {
   }
   
   override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     presenter?.getGames()
   }
   

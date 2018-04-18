@@ -66,7 +66,7 @@ final class GameViewController: UIViewController {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
       let endframeSize = endFrame?.size.height ?? 0
-      self.keyboardHeightLayoutConstraint!.constant = -endframeSize+72
+      self.keyboardHeightLayoutConstraint?.constant = -endframeSize+72
     }
     UIView.animate(withDuration: duration,
                    delay: TimeInterval(0),

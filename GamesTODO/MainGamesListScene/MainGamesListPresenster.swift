@@ -18,7 +18,7 @@ protocol MainGamesListView: class {
 final class MainGamesListPresenster {
   
   // MARK: - Properties
-  private weak var presenter: MainGamesListView!
+  private weak var presenter: MainGamesListView?
   private weak var managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
   
   // MARK: - Initializers
@@ -33,12 +33,12 @@ final class MainGamesListPresenster {
     gamesFetchRequest.predicate = nil
     do {
       guard let games = try managedContext?.fetch(gamesFetchRequest) else {
-        presenter.error(message: "There is no local games")
+        presenter?.error(message: "There is no local games")
         return
       }
-      presenter.show(games: games.map { GameItem($0) })
+      presenter?.show(games: games.map { GameItem($0) })
     } catch let error as NSError {
-      presenter.error(message: error.localizedDescription)
+      presenter?.error(message: error.localizedDescription)
       print("Could not fetch. \(error), \(error.userInfo)")
     }
   }
@@ -50,14 +50,14 @@ final class MainGamesListPresenster {
     do {
       let games = try managedContext?.fetch(gamesFetchRequest)
       guard let gameToDelete = games?.first else {
-        presenter.error(message: "Game does not exists")
+        presenter?.error(message: "Game does not exists")
         return
       }
       managedContext?.delete(gameToDelete)
       try ImageCachingService.sharedInstance.delete(game.imageKey)
       try managedContext?.save()
     } catch let error as NSError {
-      presenter.error(message: error.localizedDescription)
+      presenter?.error(message: error.localizedDescription)
     }
   }
 }

@@ -17,7 +17,7 @@ protocol GameView: class {
 final class GameViewPresenter {
   
   // MARK: - Properties
-  weak var presenter: GameView!
+  weak var presenter: GameView?
   private weak var managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 
   // MARK: - Initializers
@@ -29,7 +29,7 @@ final class GameViewPresenter {
   func save(game: GameItem) {
 
     guard let managedContext = self.managedContext else {
-      presenter.error(message: "Managed context does not set properly")
+      presenter?.error(message: "Managed context does not set properly")
       return
     }
     
@@ -44,9 +44,9 @@ final class GameViewPresenter {
     }
     do {
       try managedContext.save()
-      presenter.succesAdded(game: game)
+      presenter?.succesAdded(game: game)
     } catch let error {
-      presenter.error(message: error.localizedDescription)
+      presenter?.error(message: error.localizedDescription)
     }
   }
   
@@ -56,18 +56,18 @@ final class GameViewPresenter {
     do {
       let games = try managedContext?.fetch(gamesFetchRequest)
       guard let gameToUpdate = games?.first else {
-        presenter.error(message: "Game does not exists")
+        presenter?.error(message: "Game does not exists")
         return
       }
       setCoredata(model: gameToUpdate, from: newData)
       try managedContext?.save()
     } catch let error as NSError {
-      presenter.error(message: error.localizedDescription)
+      presenter?.error(message: error.localizedDescription)
     }
   }
   
   // MARK: - Private
-  private func setCoredata(model: NSManagedObject, from game: GameItem){
+  private func setCoredata(model: NSManagedObject, from game: GameItem) {
     model.setValue(game.title, forKeyPath: "title")
     model.setValue(game.fullDescription, forKeyPath: "fullDescription")
     model.setValue(game.genre, forKeyPath: "genre")
