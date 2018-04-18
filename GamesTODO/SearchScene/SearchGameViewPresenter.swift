@@ -23,7 +23,7 @@ final class SearchGameViewPresenter {
   init(presenter: SearchGameView) {
     self.presenter = presenter
   }
-  
+
   // MARK: - Public methods
   func getGames() {
     

@@ -12,11 +12,8 @@ final class FinishedGamesCell: UITableViewCell {
   
   // MARK: Outlets
   @IBOutlet weak private var collectionView: UICollectionView!
-//  var needUpdate: Bool = true {
-//    didSet {
-//      collectionView.re
-//    }
-//  }
+
+  // MARK: - Properties
   var selectedIndexPath: IndexPath? {
     return collectionView.indexPathsForSelectedItems?.first
   }
@@ -25,14 +22,12 @@ final class FinishedGamesCell: UITableViewCell {
     
     collectionView.delegate = dataSourceDelegate
     collectionView.dataSource = dataSourceDelegate
-//        collectionView.tag = row
-//        collectionView.setContentOffset(collectionView.contentOffset, animated: false) // Stops collection view if it was scrolling.
     collectionView.reloadData()
   }
   
-  var collectionViewOffset: CGFloat {
-    set { collectionView.contentOffset.x = newValue }
-    get { return collectionView.contentOffset.x }
-  }
+//  var collectionViewOffset: CGFloat {
+//    set { collectionView.contentOffset.x = newValue }
+//    get { return collectionView.contentOffset.x }
+//  }
 
 }

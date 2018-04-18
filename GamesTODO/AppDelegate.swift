@@ -9,19 +9,23 @@
 import UIKit
 import CoreData
 
+extension UIColor {
+  enum AppColors {
+    static let dark = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
+    static let primary = #colorLiteral(red: 1, green: 0.8078431373, blue: 0.3294117647, alpha: 1)
+  }
+}
+
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
     return true
   }
 
   func applicationWillTerminate(_ application: UIApplication) {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    // Saves changes in the application's managed object context before the application terminates.
     self.saveContext()
   }
 

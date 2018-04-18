@@ -22,7 +22,6 @@ final class ReleaseDatePicker: UIDatePicker {
   init(forField inputField: UITextField) {
     super.init(frame: CGRect.zero)
     self.inputField = inputField
-//    dateFormatter.dateFormat = "MM/dd/yyyy"
     self.datePickerMode = .date
     self.addTarget(self, action: #selector(self.datePicked(_:)), for: .valueChanged)
     setPickerRange()
@@ -41,6 +40,7 @@ final class ReleaseDatePicker: UIDatePicker {
     self.minimumDate = formatter.date(from: "1970")
     self.maximumDate = Calendar.current.date(byAdding: .year, value: 5, to: Date())
   }
+
 }
 extension ReleaseDatePicker: UITextFieldDelegate {
   func textField(_ textField: UITextField,

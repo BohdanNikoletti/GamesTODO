@@ -85,9 +85,9 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     label.textAlignment = .center
     label.adjustsFontSizeToFitWidth = true
     label.font = UIFont.boldSystemFont(ofSize: 16)
-    label.textColor = #colorLiteral(red: 1, green: 0.8078431373, blue: 0.3294117647, alpha: 1)
+    label.textColor = UIColor.AppColors.primary
     label.text = section == 0 ? "Finished games" : "Games to play"
-    label.backgroundColor = #colorLiteral(red: 0.3960784314, green: 0.4274509804, blue: 0.4705882353, alpha: 1)
+    label.backgroundColor = UIColor.AppColors.dark
     return label
   }
   
@@ -144,7 +144,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     }
   }
 }
-
+// MARK: - MainGamesListView methods
 extension MainGamesList: MainGamesListView {
   
   func error(message: String) {

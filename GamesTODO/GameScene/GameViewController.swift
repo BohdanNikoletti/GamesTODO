@@ -16,7 +16,8 @@ final class GameViewController: UIViewController {
   @IBOutlet weak private var descriptionTextView: UITextView!
   @IBOutlet weak private var saveButton: UIBarButtonItem!
   @IBOutlet weak private var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-
+  @IBOutlet weak private var finishedSwitch: UISwitch!
+  
   // MARK: - Properties
   var game: GameItem?
   var isFinishedGame = false
@@ -29,20 +30,16 @@ final class GameViewController: UIViewController {
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
-    gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
-    presenter = GameViewPresenter(presenter: self)
-    if game == nil {
-      title = "Create Game"
-    } else {
-      title = "Edit game"
-    }
-    gameTitleField.becomeFirstResponder()
-    navigationController?.navigationBar.shadowImage = UIImage()
+    prepareView()
     prepareDatePicker()
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
     prepareDescriptionViewAndKeyboardHandler()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    gameTitleField.becomeFirstResponder()
   }
   
   deinit {
@@ -78,10 +75,10 @@ final class GameViewController: UIViewController {
   @objc func descriptionDoneCLicked() {
     dismissKeyboard()
   }
-  
+
   @IBAction func save(_ sender: UIBarButtonItem) {
-    guard let title = gameTitleField.text else {
-      // TODO: Show error
+    guard let title = gameTitleField.text, !title.isEmpty else {
+      show(message: "Set game title please", with: "Oops")
       return
     }
     var releaseDate: Date?
@@ -90,12 +87,12 @@ final class GameViewController: UIViewController {
     }
     if let game = self.game {
       let newGameData = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: isFinishedGame)
+                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: finishedSwitch.isOn)
       presenter?.update(game: game, with: newGameData)
     } else {
 
       game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-                      releaseDate: releaseDate, poster: posterImageView.image, isFinished: isFinishedGame)
+                      releaseDate: releaseDate, poster: posterImageView.image, isFinished: finishedSwitch.isOn)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
     dismissKeyboard()
@@ -103,6 +100,20 @@ final class GameViewController: UIViewController {
   }
   
   // MARK: - Private methods
+  private func prepareView() {
+    navigationController?.navigationBar.tintColor = UIColor.AppColors.dark
+    navigationController?.navigationBar.shadowImage = UIImage()
+    if game == nil {
+      title = "Create Game"
+      saveButton.title = "Save"
+    } else {
+      title = "Edit game"
+      saveButton.title = "Update"
+    }
+    gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
+    presenter = GameViewPresenter(presenter: self)
+  }
+  
   private func prepareDatePicker() {
     let releaseDatePicker = ReleaseDatePicker(forField: releaseDateField)
     datePicker = releaseDatePicker
@@ -111,11 +122,13 @@ final class GameViewController: UIViewController {
   }
   
   private func inflateLayoutIfNeeded() {
-    if game == nil /*&& !isCreationMode*/ { return }
-    gameTitleField.text = game?.title
-    posterImageView.image = game?.poster ?? #imageLiteral(resourceName: "empty-image")
-    releaseDateField.text = game?.releaseDateString
-    descriptionTextView.text = game?.fullDescription
+    finishedSwitch.isOn = isFinishedGame
+    guard let game = self.game else { return }
+    gameTitleField.text = game.title
+    posterImageView.image = game.poster ?? #imageLiteral(resourceName: "empty-image")
+    releaseDateField.text = game.releaseDateString
+    descriptionTextView.text = game.fullDescription
+    finishedSwitch.setOn(game.isFinished, animated: true)
   }
   
   private func prepareDescriptionViewAndKeyboardHandler() {
@@ -134,7 +147,7 @@ final class GameViewController: UIViewController {
   }
 }
 
-// MARK: Descritpion UITextViewDelegate
+// MARK: - Descritpion UITextViewDelegate
 extension GameViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
     shouldShiftKeyBoard = true
@@ -143,7 +156,7 @@ extension GameViewController: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.text == descriptionPlaceHolder {
       textView.text = ""
-      textView.textColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
+      textView.textColor = UIColor.AppColors.dark
     }
   }
   
@@ -157,7 +170,7 @@ extension GameViewController: UITextViewDelegate {
   }
 }
 
-// MARK: GameView
+// MARK: - GameView methods
 extension GameViewController: GameView {
   func error(message: String) {
     show(message: message, with: "Something went wrong")

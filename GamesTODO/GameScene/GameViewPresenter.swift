@@ -24,7 +24,7 @@ final class GameViewPresenter {
   init(presenter: GameView) {
     self.presenter = presenter
   }
-  
+
   // MARK: - Public methods
   func save(game: GameItem) {
 
@@ -60,6 +60,10 @@ final class GameViewPresenter {
         return
       }
       setCoredata(model: gameToUpdate, from: newData)
+      try? ImageCachingService.sharedInstance.delete(game.imageKey)
+      if let imageToSave = newData.poster {
+        ImageCachingService.sharedInstance.saveImage(image: imageToSave, key: newData.imageKey)
+      }
       try managedContext?.save()
     } catch let error as NSError {
       presenter?.error(message: error.localizedDescription)

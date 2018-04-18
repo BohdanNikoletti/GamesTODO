@@ -10,7 +10,7 @@ import UIKit
 
 final class FinishedGameCell: UICollectionViewCell {
   
-  // MARK: Outlets
+  // MARK: - Outlets
   @IBOutlet weak private var nameLabel: UILabel!
   @IBOutlet weak private var posterImageView: UIImageView!
   
@@ -26,13 +26,13 @@ final class FinishedGameCell: UICollectionViewCell {
     }
   }
   
-  // MARK: Lifecycle events
+  // MARK: - Lifecycle events
   override func awakeFromNib() {
     super.awakeFromNib()
     customize()
   }
   
-  // MARK: Private methods
+  // MARK: - Private methods
   private func customize() {
     layer.cornerRadius = 5.0
     layer.borderWidth = 1.0

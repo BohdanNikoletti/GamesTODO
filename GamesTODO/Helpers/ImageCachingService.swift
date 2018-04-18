@@ -36,13 +36,12 @@ final class ImageCachingService {
   }
   
   func delete( _ key: String) throws {
-//    let fileManager = FileManager.default
     let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
     if fileManager.fileExists(atPath: filename.path) {
       try fileManager.removeItem(atPath: filename.path)
     }
-    
   }
+  
   func refresh() {
     let path = getDocumentsDirectory().path
     guard let items = try? fileManager.contentsOfDirectory(atPath: path) else { return }

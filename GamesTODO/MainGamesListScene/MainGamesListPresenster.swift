@@ -25,7 +25,7 @@ final class MainGamesListPresenster {
   init(presenter: MainGamesListView) {
     self.presenter = presenter
   }
-  
+
   // MARK: - Public methods
   func getGames() {
 

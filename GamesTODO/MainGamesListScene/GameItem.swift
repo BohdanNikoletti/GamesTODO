@@ -11,7 +11,7 @@ import CoreData
 
 struct GameItem {
   
-  // MARK: Propeteis
+  // MARK: - Propeteis
   var title: String
   var fullDescription: String?
   var genre: String

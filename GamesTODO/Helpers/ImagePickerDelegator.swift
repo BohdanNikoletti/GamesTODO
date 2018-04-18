@@ -54,7 +54,7 @@ final class ImagePickerDelegator: NSObject {
   }
   
   // MARK: - Privaet methdos
-  func isPermission(granted: @escaping() -> Void, denied: @escaping() -> Void) {
+  private func isPermission(granted: @escaping() -> Void, denied: @escaping() -> Void) {
     if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
       DispatchQueue.main.async { granted() }
     } else {
@@ -67,6 +67,7 @@ final class ImagePickerDelegator: NSObject {
       })
     }
   }
+
 }
 
 // MARK: - UIImagePickerControllerDelegate method

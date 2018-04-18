@@ -25,10 +25,7 @@ final class SearchTableViewController: UITableViewController {
   // MARK: - Lifecycle events
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
-    searchBar.delegate = self
-    presenter = SearchGameViewPresenter(presenter: self)
-    searchBar.tintColor = #colorLiteral(red: 0.262745098, green: 0.2901960784, blue: 0.3294117647, alpha: 1)
+    prepareView()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +90,16 @@ final class SearchTableViewController: UITableViewController {
       gameDetail.game = games[selectedTodoGame]
     }
   }
+  
+  // MARK: - Private methods
+  private func prepareView() {
+    presenter = SearchGameViewPresenter(presenter: self)
+    navigationController?.navigationBar.tintColor = UIColor.AppColors.dark
+    searchBar.delegate = self
+    searchBar.tintColor = UIColor.AppColors.dark
+  }
 }
+
 // MARK: - SearchGameView Methods
 extension SearchTableViewController: SearchGameView {
   func error(message: String) {
