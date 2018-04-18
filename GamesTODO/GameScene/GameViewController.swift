@@ -17,6 +17,7 @@ final class GameViewController: UIViewController {
   @IBOutlet weak private var saveButton: UIBarButtonItem!
   @IBOutlet weak private var keyboardHeightLayoutConstraint: NSLayoutConstraint?
   @IBOutlet weak private var finishedSwitch: UISwitch!
+  @IBOutlet weak private var genreField: UITextField!
   
   // MARK: - Properties
   var game: GameItem?
@@ -35,13 +36,18 @@ final class GameViewController: UIViewController {
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
     prepareDescriptionViewAndKeyboardHandler()
+    customizeTextFields()
+
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     gameTitleField.becomeFirstResponder()
   }
-  
+//  override func viewDidLayoutSubviews() {
+//    super.viewDidLayoutSubviews()
+//    customizeTextFields()
+//  }
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
@@ -144,6 +150,11 @@ final class GameViewController: UIViewController {
     let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.descriptionDoneCLicked))
     toolBar.setItems([flexibleSpace, doneButton], animated: true)
     descriptionTextView.inputAccessoryView = toolBar
+  }
+  
+  private func customizeTextFields() {
+    releaseDateField.setBottomBorderStyle()
+    genreField.setBottomBorderStyle()
   }
 }
 

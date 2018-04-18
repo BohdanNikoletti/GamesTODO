@@ -324,6 +324,7 @@
                         <outlet property="descriptionTextView" destination="ahE-ng-yhe" id="0Nq-S2-GIg"/>
                         <outlet property="finishedSwitch" destination="fEq-nO-f5L" id="GOl-0j-GoB"/>
                         <outlet property="gameTitleField" destination="vti-yh-PU8" id="xT7-CZ-kAP"/>
+                        <outlet property="genreField" destination="AvG-aw-2ff" id="0Fv-47-dvq"/>
                         <outlet property="keyboardHeightLayoutConstraint" destination="ilc-QW-iCB" id="Vg0-ei-QHR"/>
                         <outlet property="posterImageView" destination="RKL-Qy-oWv" id="p2V-Vj-HYA"/>
                         <outlet property="releaseDateField" destination="ncr-Fq-GVQ" id="cIi-Ca-sXO"/>

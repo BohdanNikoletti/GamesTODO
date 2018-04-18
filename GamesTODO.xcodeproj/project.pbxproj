@@ -14,6 +14,7 @@
 		40C4E2122083908600A6A381 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E2112083908600A6A381 /* GameViewController.swift */; };
 		40C4E214208391CA00A6A381 /* GamesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E213208391CA00A6A381 /* GamesListDataSource.swift */; };
 		40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4E217208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift */; };
+		A998F9DC208795A800D8EA29 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998F9DB208795A800D8EA29 /* UITextField+.swift */; };
 		A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D01489207F9E4B0055D468 /* AppDelegate.swift */; };
 		A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0148B207F9E4B0055D468 /* MainGamesList.swift */; };
 		A9D0148F207F9E4B0055D468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D0148D207F9E4B0055D468 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		40C4E2112083908600A6A381 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		40C4E213208391CA00A6A381 /* GamesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListDataSource.swift; sourceTree = "<group>"; };
 		40C4E217208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedGamesDataSourceDelegate.swift; sourceTree = "<group>"; };
+		A998F9DB208795A800D8EA29 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		A9D01486207F9E4B0055D468 /* GamesTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D01489207F9E4B0055D468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9D0148B207F9E4B0055D468 /* MainGamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGamesList.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				403B74BD2083D24000F3BEFA /* UIViewController+.swift */,
 				A9D1E7EB2084B7C900A40829 /* DateFormatter+.swift */,
+				A998F9DB208795A800D8EA29 /* UITextField+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				A9D0148C207F9E4B0055D468 /* MainGamesList.swift in Sources */,
 				40C4E2102083853D00A6A381 /* GameItem.swift in Sources */,
 				403B74BA2083CC1D00F3BEFA /* ImagePickerDelegator.swift in Sources */,
+				A998F9DC208795A800D8EA29 /* UITextField+.swift in Sources */,
 				A9D014BB207FA5900055D468 /* FinishedGamesCell.swift in Sources */,
 				40C4E2122083908600A6A381 /* GameViewController.swift in Sources */,
 				A9D1E7E22080FC4A00A40829 /* MainGamesListPresenster.swift in Sources */,
