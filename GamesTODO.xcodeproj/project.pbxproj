@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400A9D852087F05B00877B30 /* SelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A9D842087F05B00877B30 /* SelectorTableViewController.swift */; };
 		403B74BA2083CC1D00F3BEFA /* ImagePickerDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */; };
 		403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */; };
 		403B74BE2083D24000F3BEFA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B74BD2083D24000F3BEFA /* UIViewController+.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		400A9D842087F05B00877B30 /* SelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorTableViewController.swift; sourceTree = "<group>"; };
 		403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegator.swift; sourceTree = "<group>"; };
 		403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDatePicker.swift; sourceTree = "<group>"; };
 		403B74BD2083D24000F3BEFA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				403B74BB2083CEE100F3BEFA /* ReleaseDatePicker.swift */,
 				403B74B92083CC1D00F3BEFA /* ImagePickerDelegator.swift */,
 				A9D1E7E8208493C000A40829 /* ImageCachingService.swift */,
+				400A9D842087F05B00877B30 /* SelectorTableViewController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				A9D01492207F9E4B0055D468 /* GamesTODO.xcdatamodeld in Sources */,
 				A9D1E7EC2084B7C900A40829 /* DateFormatter+.swift in Sources */,
 				A9D0148A207F9E4B0055D468 /* AppDelegate.swift in Sources */,
+				400A9D852087F05B00877B30 /* SelectorTableViewController.swift in Sources */,
 				A9D1E7EE2085D75F00A40829 /* SearchTableViewController.swift in Sources */,
 				403B74BC2083CEE100F3BEFA /* ReleaseDatePicker.swift in Sources */,
 				40C4E218208391F500A6A381 /* FinishedGamesDataSourceDelegate.swift in Sources */,

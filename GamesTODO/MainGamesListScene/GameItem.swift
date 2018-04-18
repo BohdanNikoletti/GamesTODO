@@ -14,7 +14,7 @@ struct GameItem {
   // MARK: - Propeteis
   let title: String
   let fullDescription: String?
-  let genre: String
+  let genre: String?
   let releaseDate: Date?
   let isFinished: Bool
   private var image: UIImage?
@@ -41,11 +41,11 @@ struct GameItem {
   }
   
   var searchContent: String {
-    return title+(fullDescription?.trimmingCharacters(in: .whitespaces) ?? "")+genre+releaseDateString
+    return title+(fullDescription?.trimmingCharacters(in: .whitespaces) ?? "")+(genre ?? "")+releaseDateString
   }
   
   // MARK: - Initializers
-  init(title: String, fullDescription: String, genre: String,
+  init(title: String, fullDescription: String, genre: String?,
        releaseDate: Date?, poster: UIImage?, isFinished: Bool = false) {
     self.title = title
     self.fullDescription = fullDescription

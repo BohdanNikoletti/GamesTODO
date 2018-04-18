@@ -45,6 +45,7 @@ final class MainGamesList: UIViewController {
   
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
     guard let gameDetail = segue.destination as? GameViewController else { return }
     if segue.identifier == "addNewFinishedGame" { gameDetail.isFinishedGame = true }
     if let selectedTodoGame = contentTable.indexPathForSelectedRow?.row,

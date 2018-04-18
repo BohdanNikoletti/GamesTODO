@@ -327,7 +327,7 @@
                         <outlet property="descriptionTextView" destination="ahE-ng-yhe" id="0Nq-S2-GIg"/>
                         <outlet property="finishedSwitch" destination="fEq-nO-f5L" id="GOl-0j-GoB"/>
                         <outlet property="gameTitleField" destination="vti-yh-PU8" id="xT7-CZ-kAP"/>
-                        <outlet property="genreField" destination="AvG-aw-2ff" id="0Fv-47-dvq"/>
+                        <outlet property="genreField" destination="AvG-aw-2ff" id="XtG-dR-g9R"/>
                         <outlet property="keyboardHeightLayoutConstraint" destination="ilc-QW-iCB" id="Vg0-ei-QHR"/>
                         <outlet property="posterImageView" destination="RKL-Qy-oWv" id="p2V-Vj-HYA"/>
                         <outlet property="releaseDateField" destination="ncr-Fq-GVQ" id="cIi-Ca-sXO"/>
@@ -411,24 +411,14 @@
             </objects>
             <point key="canvasLocation" x="751.875" y="255.63380281690141"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Selector Table View Controller-->
         <scene sceneID="E0f-dZ-ZUg">
             <objects>
-                <tableViewController id="AAW-2e-OSo" sceneMemberID="viewController">
+                <tableViewController id="AAW-2e-OSo" customClass="SelectorTableViewController" customModule="GamesTODO" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PEI-vI-o3v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rev-0B-mjP">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rev-0B-mjP" id="KA8-ry-6Ko">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="AAW-2e-OSo" id="yKo-L3-aFO"/>
                             <outlet property="delegate" destination="AAW-2e-OSo" id="nIn-IX-iBs"/>

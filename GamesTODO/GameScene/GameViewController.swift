@@ -27,7 +27,7 @@ final class GameViewController: UIViewController {
   private var shouldShiftKeyBoard = false
   private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
   private var presenter: GameViewPresenter?
-
+  
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,10 +36,8 @@ final class GameViewController: UIViewController {
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
     prepareDescriptionViewAndKeyboardHandler()
-//    customizeTextFields()
-
   }
-
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     gameTitleField.becomeFirstResponder()
@@ -47,7 +45,7 @@ final class GameViewController: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    customizeTextFields()
+    prepareTextFields()
   }
   
   deinit {
@@ -83,7 +81,7 @@ final class GameViewController: UIViewController {
   @objc func descriptionDoneCLicked() {
     dismissKeyboard()
   }
-
+  
   @IBAction func save(_ sender: UIBarButtonItem) {
     guard let title = gameTitleField.text, !title.isEmpty else {
       show(message: "Set game title please", with: "Oops")
@@ -94,17 +92,23 @@ final class GameViewController: UIViewController {
       releaseDate = DateFormatter.base.date(from: dateString)
     }
     if let game = self.game {
-      let newGameData = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
-                                  releaseDate: releaseDate, poster: posterImageView.image, isFinished: finishedSwitch.isOn)
+      let newGameData = GameItem(title: title, fullDescription: descriptionTextView.text, genre: genreField.text,
+                                 releaseDate: releaseDate, poster: posterImageView.image, isFinished: finishedSwitch.isOn)
       presenter?.update(game: game, with: newGameData)
     } else {
-
-      game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: "genre1",
+      
+      game = GameItem(title: title, fullDescription: descriptionTextView.text, genre: genreField.text,
                       releaseDate: releaseDate, poster: posterImageView.image, isFinished: finishedSwitch.isOn)
       presenter?.save(game: game.unsafelyUnwrapped)
     }
     dismissKeyboard()
-
+    
+  }
+  
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
+    (segue.destination as? SelectorTableViewController)?.delegate = self
   }
   
   // MARK: - Private methods
@@ -136,6 +140,7 @@ final class GameViewController: UIViewController {
     posterImageView.image = game.poster ?? #imageLiteral(resourceName: "empty-image")
     releaseDateField.text = game.releaseDateString
     descriptionTextView.text = game.fullDescription
+    genreField.text = game.genre
     finishedSwitch.setOn(game.isFinished, animated: true)
   }
   
@@ -153,10 +158,11 @@ final class GameViewController: UIViewController {
     toolBar.setItems([flexibleSpace, doneButton], animated: true)
     descriptionTextView.inputAccessoryView = toolBar
   }
-  
-  private func customizeTextFields() {
+  private func prepareTextFields() {
     releaseDateField.setBottomBorderStyle()
     genreField.setBottomBorderStyle()
+    genreField.delegate = self
+
   }
 }
 
@@ -182,14 +188,29 @@ extension GameViewController: UITextViewDelegate {
     shouldShiftKeyBoard = false
   }
 }
-
-// MARK: - GameView methods
-extension GameViewController: GameView {
+// MARK: - UITextFieldDelegate extension
+extension GameViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    textField.resignFirstResponder()
+    performSegue(withIdentifier: "showGenres", sender: self)
+  }
+  func textField(_ textField: UITextField,
+                 shouldChangeCharactersIn range: NSRange,
+                 replacementString string: String) -> Bool {
+    return false
+  }
+}
+// MARK: - GameView methods &
+extension GameViewController: GameView, SelectorProtocol {
   func error(message: String) {
     show(message: message, with: "Something went wrong")
   }
   
   func succesAdded(game: GameItem) {
     show(message: "Game Succesfully added", with: "Information")
+  }
+  
+  func didSelect(_ genre: String) {
+    self.genreField.text = genre
   }
 }
