@@ -18,16 +18,11 @@ final class FinishedGamesCell: UITableViewCell {
     return collectionView.indexPathsForSelectedItems?.first
   }
   
+  // MARK: - Methods
   func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
     
     collectionView.delegate = dataSourceDelegate
     collectionView.dataSource = dataSourceDelegate
     collectionView.reloadData()
   }
-  
-//  var collectionViewOffset: CGFloat {
-//    set { collectionView.contentOffset.x = newValue }
-//    get { return collectionView.contentOffset.x }
-//  }
-
 }

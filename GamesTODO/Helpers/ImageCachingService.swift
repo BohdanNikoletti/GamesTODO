@@ -10,16 +10,14 @@ import UIKit
 
 final class ImageCachingService {
   
+  // MARK: - Properties
   static let sharedInstance = ImageCachingService()
   private let fileManager = FileManager.default
 
+  // MARK: - Initalizers
   private init() { }
   
-  private func getDocumentsDirectory() -> URL {
-    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0]
-  }
-  
+  // MARK: - Public methods
   func saveImage(image: UIImage, key: String) {
     if let data = UIImagePNGRepresentation(image) {
       let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
@@ -53,4 +51,11 @@ final class ImageCachingService {
       try? fileManager.removeItem(atPath: completePath)
     }
   }
+  
+  // MARK: - Private methods
+  private func getDocumentsDirectory() -> URL {
+    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+  }
+  
 }

@@ -21,7 +21,7 @@ final class SearchTableViewController: UITableViewController {
     }
   }
   private var presenter: SearchGameViewPresenter?
-
+  
   // MARK: - Lifecycle events
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,22 +40,18 @@ final class SearchTableViewController: UITableViewController {
   
   // MARK: - UITableViewDelegate methdos
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if indexPath.section == 0 {
+    if indexPath.section == 0 && filteredGames.isEmpty {
       tableView.isScrollEnabled = false
       return tableView.frame.height
     }
     tableView.isScrollEnabled = true
-    return UITableViewAutomaticDimension
-  }
-  
-  override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 0.01
+    return 104
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     performSegue(withIdentifier: "gameDetail", sender: self)
   }
-
+  
   // MARK: - UITableViewDataSource methdos
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return section == 0 ? (filteredGames.isEmpty ? 1 : 0) : filteredGames.count
@@ -67,16 +63,16 @@ final class SearchTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 1 {
-      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-      if cell == nil {
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? GameSearchTableViewCell else {
+        fatalError("Can not cast gameCell to GameSearchTableViewCell")
       }
-      cell?.textLabel?.text = filteredGames[indexPath.row].title
-      cell?.detailTextLabel?.text = filteredGames[indexPath.row].genre
-      cell?.imageView?.image = filteredGames[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
-      cell?.accessoryType = .disclosureIndicator
-      return cell.unsafelyUnwrapped
-    } else { // Empty search
+      let game = filteredGames[indexPath.row]
+      cell.title = game.title
+      cell.subTitle = game.genre
+      cell.bottomTitle = game.releaseDateString
+      cell.backgroundImage = game.poster
+      return cell
+    } else { // Empty search cell
       let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
       emptyCell?.isUserInteractionEnabled = false
       return emptyCell.unsafelyUnwrapped
@@ -95,6 +91,7 @@ final class SearchTableViewController: UITableViewController {
   // MARK: - Private methods
   private func prepareView() {
     presenter = SearchGameViewPresenter(presenter: self)
+    tableView.tableFooterView = UIView()
     navigationController?.navigationBar.tintColor = UIColor.AppColors.dark
     navigationController?.navigationBar.shadowImage = UIImage()
     searchBar.layer.borderWidth = 1
@@ -132,15 +129,18 @@ extension SearchTableViewController: UISearchBarDelegate {
     return true
   }
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    if !searchText.isEmpty {
-      filteredGames = games.filter { game in
-        return game.searchContent.lowercased().contains(searchText.lowercased())
-      }
-    } else {
-      filteredGames = games
+    if searchText.isEmpty { filteredGames = games; return }
+    NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+    perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.35)
+    filteredGames = games.filter { game in
+      return game.searchContent.lowercased().contains(searchText.lowercased())
     }
   }
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
+  }
+
+  @objc func reload(_ searchBar: UISearchBar) {
+    guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "" else { return; }
   }
 }

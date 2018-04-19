@@ -12,7 +12,7 @@ final class GameTableViewCell: UITableViewCell {
   
   // MARK: - Outlets
   @IBOutlet weak private var posterImageView: UIImageView!
-  @IBOutlet weak private var titlelabel: UILabel!
+  @IBOutlet weak private var titleLabel: UILabel!
   @IBOutlet weak private var genreLabel: UILabel!
   
   // MARK: - Properties
@@ -23,11 +23,12 @@ final class GameTableViewCell: UITableViewCell {
   }
   var title: String? {
     didSet {
-      titlelabel.text = title
+      titleLabel.text = title
     }
   }
   var genre: String? {
     didSet {
+      isHidden = genre == nil
       genreLabel.text = genre
     }
   }
@@ -40,10 +41,4 @@ final class GameTableViewCell: UITableViewCell {
     posterImageView.layer.borderColor = UIColor.AppColors.dark.cgColor
   }
   
-//  override func setSelected(_ selected: Bool, animated: Bool) {
-//    super.setSelected(selected, animated: animated)
-//
-//    // Configure the view for the selected state
-//  }
-//
 }

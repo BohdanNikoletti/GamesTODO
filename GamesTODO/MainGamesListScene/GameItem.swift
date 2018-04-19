@@ -41,7 +41,10 @@ struct GameItem {
   }
   
   var searchContent: String {
-    return title+(fullDescription?.trimmingCharacters(in: .whitespaces) ?? "")+(genre ?? "")+releaseDateString
+    let descriptionString = fullDescription?.trimmingCharacters(in: .whitespaces) ?? ""
+    let genreString = genre ?? ""
+    let finishedString = isFinished ? "finished" : ""
+    return "\(title)\(descriptionString)\(genreString)\(releaseDateString)\(finishedString)"
   }
   
   // MARK: - Initializers
