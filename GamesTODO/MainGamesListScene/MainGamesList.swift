@@ -20,6 +20,7 @@ final class MainGamesList: UIViewController {
   private var games: [GameItem] = []
   private var finishedGames: [GameItem] = []
   private let finishedGamesSourceDelegator = FinishedGamesDataSourceDelegate()
+  private let finishedGamesCellHeight: CGFloat = 100
   
   // MARK: - Life cycle events
   override func viewDidLoad() {
@@ -63,13 +64,13 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   // MARK: - UITableViewDelegate methdos
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 {
-      return 100
+      return finishedGamesCellHeight
     } else if indexPath.section == 1 && games.isEmpty {
       tableView.isScrollEnabled = false
-      return tableView.frame.height - 100
+      return tableView.frame.height - finishedGamesCellHeight
     }
     tableView.isScrollEnabled = true
-    return UITableViewAutomaticDimension
+    return 76//UITableViewAutomaticDimension
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -130,15 +131,23 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
       cell.selectionStyle = .none
       return cell
     } else if !games.isEmpty {
-      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-      if cell == nil {
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? GameTableViewCell else {
+        fatalError("Can not cast gameCell to GameTableViewCell")
       }
-      cell?.textLabel?.text = games[indexPath.row].title
-      cell?.detailTextLabel?.text = games[indexPath.row].genre
-      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
-      cell?.accessoryType = .disclosureIndicator
-      return cell.unsafelyUnwrapped
+      let game = games[indexPath.row]
+      cell.title = game.title
+      cell.genre = game.genre
+      cell.poster = game.poster
+      return cell
+//      var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+//      if cell == nil {
+//        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+//      }
+//      cell?.textLabel?.text = games[indexPath.row].title
+//      cell?.detailTextLabel?.text = games[indexPath.row].genre
+//      cell?.imageView?.image = games[indexPath.row].poster ?? #imageLiteral(resourceName: "empty-image")
+//      cell?.accessoryType = .disclosureIndicator
+//      return cell.unsafelyUnwrapped
     } else {
       let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
       return emptyCell.unsafelyUnwrapped

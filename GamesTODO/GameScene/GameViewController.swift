@@ -27,11 +27,20 @@ final class GameViewController: UIViewController {
   private var shouldShiftKeyBoard = false
   private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
   private var presenter: GameViewPresenter?
-  
+  private let titleFieldTAG = 1
+//  private var keyBoardToolBar: UIToolbar {
+//    let toolBar = UIToolbar()
+//    toolBar.sizeToFit()
+//    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.descriptionDoneCLicked))
+//    toolBar.setItems([flexibleSpace, doneButton], animated: true)
+//    return toolBar
+//  }
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareView()
+    setTextFieldsDelegates()
     prepareDatePicker()
     hideKeyboardOnTouch()
     inflateLayoutIfNeeded()
@@ -45,7 +54,7 @@ final class GameViewController: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    prepareTextFields()
+    prepareTextFieldsUI()
   }
   
   deinit {
@@ -69,7 +78,7 @@ final class GameViewController: UIViewController {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
       let endframeSize = endFrame?.size.height ?? 0
-      self.keyboardHeightLayoutConstraint?.constant = -endframeSize+72
+      self.keyboardHeightLayoutConstraint?.constant = -endframeSize+32
     }
     UIView.animate(withDuration: duration,
                    delay: TimeInterval(0),
@@ -108,7 +117,9 @@ final class GameViewController: UIViewController {
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
-    (segue.destination as? SelectorTableViewController)?.delegate = self
+    guard let selectorController = segue.destination as? SelectorTableViewController else { return }
+    selectorController.delegate = self
+    selectorController.selectedGame = genreField.text ?? ""
   }
   
   // MARK: - Private methods
@@ -124,6 +135,8 @@ final class GameViewController: UIViewController {
     }
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     presenter = GameViewPresenter(presenter: self)
+//    gameTitleField.delegate = self
+//    gameTitleField.inputAccessoryView = keyBoardToolBar
   }
   
   private func prepareDatePicker() {
@@ -158,11 +171,15 @@ final class GameViewController: UIViewController {
     toolBar.setItems([flexibleSpace, doneButton], animated: true)
     descriptionTextView.inputAccessoryView = toolBar
   }
-  private func prepareTextFields() {
+  
+  private func prepareTextFieldsUI() {
     releaseDateField.setBottomBorderStyle()
     genreField.setBottomBorderStyle()
+  }
+  
+  private func setTextFieldsDelegates() {
     genreField.delegate = self
-
+    gameTitleField.delegate = self
   }
 }
 
@@ -190,17 +207,27 @@ extension GameViewController: UITextViewDelegate {
 }
 // MARK: - UITextFieldDelegate extension
 extension GameViewController: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
-    performSegue(withIdentifier: "showGenres", sender: self)
+    return true
   }
+  
+  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    if textField.tag == titleFieldTAG { return true }
+    dismissKeyboard()
+    performSegue(withIdentifier: "showGenres", sender: self)
+    return false
+  }
+
   func textField(_ textField: UITextField,
                  shouldChangeCharactersIn range: NSRange,
                  replacementString string: String) -> Bool {
-    return false
+    
+    return textField.tag == titleFieldTAG
   }
 }
-// MARK: - GameView methods &
+// MARK: - GameView & SelectorProtocol methods
 extension GameViewController: GameView, SelectorProtocol {
   func error(message: String) {
     show(message: message, with: "Something went wrong")

@@ -96,6 +96,9 @@ final class SearchTableViewController: UITableViewController {
   private func prepareView() {
     presenter = SearchGameViewPresenter(presenter: self)
     navigationController?.navigationBar.tintColor = UIColor.AppColors.dark
+    navigationController?.navigationBar.shadowImage = UIImage()
+    searchBar.layer.borderWidth = 1
+    searchBar.layer.borderColor = UIColor.AppColors.primary.cgColor
     searchBar.delegate = self
     searchBar.tintColor = UIColor.AppColors.dark
   }

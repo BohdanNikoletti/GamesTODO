@@ -34,4 +34,16 @@ class GamesTODOUITests: XCTestCase {
     XCTAssertTrue(app.otherElements["addGameView"].exists)
   }
   
+  func testGenrenPicking() {
+    app.launch()
+    let genreTextField = app.textFields["genreField"]
+    app.navigationBars.buttons["addGameButton"].tap()
+    genreTextField.tap()
+    XCTAssertTrue(app.tables["pickGenreTable"].exists)
+    app.tables["pickGenreTable"].cells.element(boundBy:0).tap()
+    XCTAssertTrue(app.otherElements["addGameView"].exists)
+    let genreString = genreTextField.value as? String
+    XCTAssertNotNil(genreString)
+    XCTAssertTrue(!genreString!.isEmpty, "Genre is Empty")
+  }
 }

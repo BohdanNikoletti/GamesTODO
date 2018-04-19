@@ -17,6 +17,7 @@ final class SelectorTableViewController: UITableViewController {
   // MARK: - Properties
   private let genres = ["Action", "RPG", "Strategy", "Shooter", "Simulator"]
   weak var delegate: SelectorProtocol?
+  var selectedGame = ""
   
   // MARK: - Lifecycle events
   override func viewDidLoad() {
@@ -27,7 +28,6 @@ final class SelectorTableViewController: UITableViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   // MARK: - Table view data source
@@ -38,13 +38,16 @@ final class SelectorTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectorCell") else { fatalError("Can not dequeueReusableCell SelectorCell") }
-    cell.textLabel?.text = genres[indexPath.row]
+    let genre = genres[indexPath.row]
+    cell.textLabel?.text = genre
     cell.textLabel?.textColor = UIColor.AppColors.dark
+    cell.accessoryType = selectedGame == genre ? .checkmark : .none
     return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     delegate?.didSelect(genres[indexPath.row])
+    tableView.visibleCells[indexPath.row].accessoryType = .checkmark
     self.navigationController?.popViewController(animated: true)
   }
 }

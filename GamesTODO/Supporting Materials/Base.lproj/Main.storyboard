@@ -23,6 +23,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y3d-TC-dQw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="finishedGamesCell" rowHeight="90" id="qYF-tf-RGq" customClass="FinishedGamesCell" customModule="GamesTODO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="90"/>
@@ -163,6 +164,50 @@
                                             <segue destination="b3l-Ph-9KL" kind="show" identifier="addNewgame" id="4Py-6s-kx2"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="gameCell" rowHeight="77" id="fAA-T7-CF0" customClass="GameTableViewCell" customModule="GamesTODO" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="506" width="320" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fAA-T7-CF0" id="DYg-QT-ev0">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="76.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SCx-QX-dU2">
+                                                    <rect key="frame" x="8" y="8" width="61" height="61"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="SCx-QX-dU2" secondAttribute="height" multiplier="1:1" id="8cn-es-mce"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpc-6x-EEZ">
+                                                    <rect key="frame" x="85" y="12" width="209" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <color key="textColor" red="0.26274509800000001" green="0.2901960784" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmT-nL-0yh">
+                                                    <rect key="frame" x="85" y="46.5" width="209" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mpc-6x-EEZ" firstAttribute="top" secondItem="DYg-QT-ev0" secondAttribute="top" constant="12" id="5iY-yz-neH"/>
+                                                <constraint firstItem="TmT-nL-0yh" firstAttribute="leading" secondItem="SCx-QX-dU2" secondAttribute="trailing" constant="16" id="KBL-pT-Y2A"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mpc-6x-EEZ" secondAttribute="trailing" id="OVP-H6-5Mm"/>
+                                                <constraint firstItem="TmT-nL-0yh" firstAttribute="top" secondItem="Mpc-6x-EEZ" secondAttribute="bottom" constant="8" id="QRv-Mv-1PE"/>
+                                                <constraint firstItem="SCx-QX-dU2" firstAttribute="top" secondItem="DYg-QT-ev0" secondAttribute="top" constant="8" id="k0g-uo-lpQ"/>
+                                                <constraint firstItem="SCx-QX-dU2" firstAttribute="leading" secondItem="DYg-QT-ev0" secondAttribute="leading" constant="8" id="lYb-JR-1T9"/>
+                                                <constraint firstAttribute="trailing" secondItem="TmT-nL-0yh" secondAttribute="trailing" id="nW6-py-829"/>
+                                                <constraint firstAttribute="bottom" secondItem="SCx-QX-dU2" secondAttribute="bottom" constant="8" id="pAX-rP-Rib"/>
+                                                <constraint firstItem="Mpc-6x-EEZ" firstAttribute="leading" secondItem="SCx-QX-dU2" secondAttribute="trailing" constant="16" id="t21-Gy-R1G"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="genreLabel" destination="TmT-nL-0yh" id="XYO-Pb-Ip1"/>
+                                            <outlet property="posterImageView" destination="SCx-QX-dU2" id="bad-K8-h7h"/>
+                                            <outlet property="titlelabel" destination="Mpc-6x-EEZ" id="FzM-5q-nxg"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -215,11 +260,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOQ-YX-mKb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Game tittle" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vti-yh-PU8">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Game tittle" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="vti-yh-PU8">
                                         <rect key="frame" x="16" y="4" width="300" height="32"/>
+                                        <color key="tintColor" red="0.39607843139999999" green="0.42745098040000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.81568627449999997" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -242,6 +288,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00/00/0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncr-Fq-GVQ">
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Y1k-k0-UwM"/>
                                         </constraints>
@@ -251,9 +298,13 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Genre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvG-aw-2ff">
                                         <rect key="frame" x="130" y="0.0" width="126" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.27685046200000002" green="0.35365754370000002" blue="0.39428466559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="genreField"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -343,15 +394,15 @@
         <scene sceneID="DFP-bF-FhN">
             <objects>
                 <tableViewController id="y8D-9S-A1q" customClass="SearchTableViewController" customModule="GamesTODO" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9mN-IS-oex">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" id="9mN-IS-oex">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" placeholder="Type here anything" translucent="NO" id="ncG-E4-4f5">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type here anything" translucent="NO" id="ncG-E4-4f5">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.99607843139999996" green="0.81568627449999997" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                             <scopeButtonTitles>
                                 <string>General</string>
                                 <string>Genre</string>
@@ -419,6 +470,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="pickGenreTable"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="AAW-2e-OSo" id="yKo-L3-aFO"/>
                             <outlet property="delegate" destination="AAW-2e-OSo" id="nIn-IX-iBs"/>
@@ -463,6 +517,6 @@
         <image name="emptyGames" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E8u-zJ-whI"/>
+        <segue reference="AkM-uG-z4b"/>
     </inferredMetricsTieBreakers>
 </document>
