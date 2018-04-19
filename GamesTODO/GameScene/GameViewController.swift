@@ -234,7 +234,11 @@ extension GameViewController: GameView, SelectorProtocol {
   }
   
   func succesAdded(game: GameItem) {
-    show(message: "Game Succesfully added", with: "Information")
+    show(message: "\(game.title) Succesfully added", with: "Information")
+  }
+  
+  func succesUpdated(game: GameItem) {
+    show(message: "\(game.title) Succesfully updated", with: "Information")
   }
   
   func didSelect(_ genre: String) {

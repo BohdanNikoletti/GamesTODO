@@ -36,9 +36,11 @@ final class GameTableViewCell: UITableViewCell {
   // MARK: - Lifeccycle events
   override func awakeFromNib() {
     super.awakeFromNib()
-    posterImageView.layer.cornerRadius = posterImageView.frame.height / 2
     posterImageView.layer.borderWidth = 1
     posterImageView.layer.borderColor = UIColor.AppColors.dark.cgColor
   }
-  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    posterImageView.layer.cornerRadius = posterImageView.frame.height / 2
+  }
 }

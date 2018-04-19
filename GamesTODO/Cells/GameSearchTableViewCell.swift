@@ -16,7 +16,6 @@ final class GameSearchTableViewCell: UITableViewCell {
   @IBOutlet weak private var posterImageView: UIImageView!
   @IBOutlet weak private var posterCover: UIView!
 
-
   // MARK: - Properties
   var title: String? {
     didSet {

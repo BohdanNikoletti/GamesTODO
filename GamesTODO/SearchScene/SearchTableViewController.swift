@@ -20,6 +20,7 @@ final class SearchTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
+  private var cellHeight: CGFloat = 104
   private var presenter: SearchGameViewPresenter?
   
   // MARK: - Lifecycle events
@@ -42,10 +43,10 @@ final class SearchTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 && filteredGames.isEmpty {
       tableView.isScrollEnabled = false
-      return tableView.frame.height
+      return tableView.frame.height - searchBar.frame.height
     }
     tableView.isScrollEnabled = true
-    return 104
+    return cellHeight
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

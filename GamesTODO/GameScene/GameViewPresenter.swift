@@ -12,6 +12,7 @@ import CoreData
 protocol GameView: class {
   func error(message: String)
   func succesAdded(game: GameItem)
+  func succesUpdated(game: GameItem)
 }
 
 final class GameViewPresenter {
@@ -65,6 +66,7 @@ final class GameViewPresenter {
         ImageCachingService.sharedInstance.saveImage(image: imageToSave, key: newData.imageKey)
       }
       try managedContext?.save()
+      presenter?.succesUpdated(game: newData)
     } catch let error as NSError {
       presenter?.error(message: error.localizedDescription)
     }
