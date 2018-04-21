@@ -28,14 +28,7 @@ final class GameViewController: UIViewController {
   private let descriptionPlaceHolder = "GAME DESCRIPTION GOES HERE"
   private var presenter: GameViewPresenter?
   private let titleFieldTAG = 1
-//  private var keyBoardToolBar: UIToolbar {
-//    let toolBar = UIToolbar()
-//    toolBar.sizeToFit()
-//    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.descriptionDoneCLicked))
-//    toolBar.setItems([flexibleSpace, doneButton], animated: true)
-//    return toolBar
-//  }
+
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -135,8 +128,6 @@ final class GameViewController: UIViewController {
     }
     gameImagePicker.addGestureRecognizer(for: posterImageView, callingView: self)
     presenter = GameViewPresenter(presenter: self)
-//    gameTitleField.delegate = self
-//    gameTitleField.inputAccessoryView = keyBoardToolBar
   }
   
   private func prepareDatePicker() {
@@ -205,6 +196,7 @@ extension GameViewController: UITextViewDelegate {
     shouldShiftKeyBoard = false
   }
 }
+
 // MARK: - UITextFieldDelegate extension
 extension GameViewController: UITextFieldDelegate {
   

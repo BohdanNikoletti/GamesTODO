@@ -25,20 +25,7 @@ final class ImagePickerDelegator: NSObject {
       imagePicker.sourceType = .photoLibrary
       self.callingView?.present(imagePicker, animated: true, completion: nil)
     }))
-    alert.addAction(UIAlertAction(title: "Camera",
-                                  style: .default,
-                                  handler: { [unowned self] _ in
-      self.isPermission(granted: {
-        [unowned self] in
-        imagePicker.sourceType = .camera
-        self.callingView?.present(imagePicker, animated: true, completion: nil)
-        }, denied: {
-          [unowned self] in
-          self.callingView?.show(message: "Need camera permission", with: "Please go to setting and allow app to use camera")
-      })
-      
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     callingView?.present(alert, animated: true)
   }
   

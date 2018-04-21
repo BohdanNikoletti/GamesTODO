@@ -9,28 +9,46 @@
 import XCTest
 @testable import GamesTODO
 
-class GamesTODOTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+final class GamesTODOTests: XCTestCase {
+  
+  // MARK: - Properties
+  private var presenter: SearchGameViewPresenter?
+  private var games: [GameItem] = []
+
+  override func setUp() {
+    super.setUp()
+    presenter = SearchGameViewPresenter(presenter: self)
+    presenter?.getGames()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testFinishedGameSearch() {
+    XCTAssert(!games.filter{$0.isFinished}.isEmpty, "There is no finished games")
+    let filteredGames = games.filter { game in
+      return game.searchContent.lowercased().contains("favorite".lowercased())
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    XCTAssert(!filteredGames.isEmpty, "Wrong filter results")
+  }
+  
+  func testSearchPerformanceExample() {
+    self.measure {
+      let _ = games.filter { game in
+        return game.searchContent.lowercased().contains("favorite".lowercased())
+      }
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+  }
+}
+
+extension GamesTODOTests: SearchGameView {
+  func error(message: String) {
+    XCTFail(message)
+  }
+  
+  func show(games: [GameItem]) {
+    self.games = games
+  }
+  
 }

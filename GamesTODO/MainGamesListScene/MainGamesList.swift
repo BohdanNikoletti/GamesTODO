@@ -14,14 +14,12 @@ final class MainGamesList: UIViewController {
   @IBOutlet weak private var contentTable: UITableView!
   
   // MARK: - Properties
-    private let gamesListDataSource = GamesListDataSource()
-  //  private let gamesListDelegate = GamesListDelegate()
   private var presenter: MainGamesListPresenster?
   private var games: [GameItem] = []
   private var finishedGames: [GameItem] = []
   private let finishedGamesSourceDelegator = FinishedGamesDataSourceDelegate()
   private let finishedGamesCellHeight: CGFloat = 100
-  
+
   // MARK: - Life cycle events
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,8 +37,8 @@ final class MainGamesList: UIViewController {
   
   // MARK: - Private methods
   private func prepareTableView() {
-    contentTable.delegate = self//gamesListDelegate
-    contentTable.dataSource = gamesListDataSource
+    contentTable.delegate = self
+    contentTable.dataSource = self
     contentTable.allowsSelectionDuringEditing = false
   }
   
@@ -60,7 +58,7 @@ final class MainGamesList: UIViewController {
   }
 }
 
-extension MainGamesList: UITableViewDelegate { //, UITableViewDataSource
+extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
   // MARK: - UITableViewDelegate methdos
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 {
@@ -92,7 +90,46 @@ extension MainGamesList: UITableViewDelegate { //, UITableViewDataSource
     label.backgroundColor = UIColor.AppColors.dark
     return label
   }
+  
+  // MARK: UITableViewDataSource methdos
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return section == 0 ? 1 : (games.isEmpty ? 1 : games.count)
+  }
 
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.section == 0 {
+      guard let cell = tableView
+        .dequeueReusableCell(withIdentifier: "finishedGamesCell",
+                             for: indexPath) as? FinishedGamesCell else {
+                              fatalError("can not cast finishedGamesCell to FinishedGamesCell")
+      }
+      cell.setCollectionViewDataSourceDelegate(finishedGamesSourceDelegator, forRow: indexPath.row)
+      cell.selectionStyle = .none
+      return cell
+    } else if !games.isEmpty {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? GameTableViewCell else {
+        fatalError("Can not cast gameCell to GameTableViewCell")
+      }
+      let game = games[indexPath.row]
+      cell.title = game.title
+      cell.genre = game.genre
+      cell.poster = game.poster
+      return cell
+    } else {
+      let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
+      return emptyCell.unsafelyUnwrapped
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return indexPath.section != 0 && !games.isEmpty
+  }
+  
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
@@ -105,41 +142,6 @@ extension MainGamesList: UITableViewDelegate { //, UITableViewDataSource
       }
     }
   }
-  
-  // MARK: UITableViewDataSource methdos
-//  func tableView(_ tableView: UITableView,
-//                 numberOfRowsInSection section: Int) -> Int {
-//    return section == 0 ? 1 : (games.isEmpty ? 1 : games.count)
-//  }
-//
-//  func numberOfSections(in tableView: UITableView) -> Int {
-//    return 2
-//  }
-//
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    if indexPath.section == 0 {
-//      guard let cell = tableView
-//        .dequeueReusableCell(withIdentifier: "finishedGamesCell",
-//                             for: indexPath) as? FinishedGamesCell else {
-//                              fatalError("can not cast finishedGamesCell to FinishedGamesCell")
-//      }
-//      cell.setCollectionViewDataSourceDelegate(finishedGamesSourceDelegator, forRow: indexPath.row)
-//      cell.selectionStyle = .none
-//      return cell
-//    } else if !games.isEmpty {
-//      guard let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? GameTableViewCell else {
-//        fatalError("Can not cast gameCell to GameTableViewCell")
-//      }
-//      let game = games[indexPath.row]
-//      cell.title = game.title
-//      cell.genre = game.genre
-//      cell.poster = game.poster
-//      return cell
-//    } else {
-//      let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyGamesCell")
-//      return emptyCell.unsafelyUnwrapped
-//    }
-//  }
 }
 // MARK: - MainGamesListView methods
 extension MainGamesList: MainGamesListView {
@@ -151,11 +153,7 @@ extension MainGamesList: MainGamesListView {
   func show(games: [GameItem]) {
     self.finishedGames = games.filter { $0.isFinished }
     self.games = games.filter { !$0.isFinished }
-    gamesListDataSource.finishedGames = finishedGames
-    gamesListDataSource.todoGames = self.games
-//    gamesListDataSource.games = games
-//    finishedGamesSourceDelegator.games = finishedGames
-//    gamesListDataSource.games = games
+    finishedGamesSourceDelegator.games = finishedGames
     contentTable.reloadData()
   }
   

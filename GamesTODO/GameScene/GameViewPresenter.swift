@@ -28,7 +28,11 @@ final class GameViewPresenter {
 
   // MARK: - Public methods
   func save(game: GameItem) {
-
+    if isExist(game: game) {
+      presenter?.error(message: "Game with that name already exists!")
+      return
+    }
+    
     guard let managedContext = self.managedContext else {
       presenter?.error(message: "Managed context does not set properly")
       return
@@ -52,6 +56,10 @@ final class GameViewPresenter {
   }
   
   func update(game: GameItem, with newData: GameItem) {
+    if game.title != newData.title && isExist(game: newData) {
+      presenter?.error(message: "Game with that name already exists!")
+      return
+    }
     let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
     gamesFetchRequest.predicate = NSPredicate(format: "title = %@", game.title)
     do {
@@ -80,4 +88,19 @@ final class GameViewPresenter {
     model.setValue(game.releaseDate, forKeyPath: "releaseDate")
     model.setValue(game.isFinished, forKeyPath: "isFinished")
   }
+  
+  private func isExist(game: GameItem) -> Bool {
+    let gamesFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
+    gamesFetchRequest.predicate = NSPredicate(format: "title = %@", game.title)
+    do {
+      guard let games = try managedContext?.fetch(gamesFetchRequest) else {
+        return false
+      }
+      return !games.isEmpty
+    } catch let error as NSError {
+      presenter?.error(message: error.localizedDescription)
+      return false
+    }
+  }
+
 }
