@@ -19,7 +19,7 @@ final class ImageCachingService {
   
   // MARK: - Public methods
   func saveImage(image: UIImage, key: String) {
-    if let data = UIImagePNGRepresentation(image) {
+    if let data = image.pngData() {
       let filename = getDocumentsDirectory().appendingPathComponent("\(key).png")
       try? data.write(to: filename)
     }

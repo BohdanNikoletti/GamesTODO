@@ -21,12 +21,7 @@ struct GameItem {
   
   // MARK: - Computed variables
   var poster: UIImage? {
-    get {
-      return ImageCachingService.sharedInstance.getImage(key: imageKey) ?? image
-    }
-    set {
-      image = poster
-    }
+    return ImageCachingService.sharedInstance.getImage(key: imageKey) ?? image
   }
   
   var imageKey: String {

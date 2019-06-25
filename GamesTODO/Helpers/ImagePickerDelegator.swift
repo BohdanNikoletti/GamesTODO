@@ -60,9 +60,8 @@ final class ImagePickerDelegator: NSObject {
 // MARK: - UIImagePickerControllerDelegate method
 extension ImagePickerDelegator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [String: Any]) {
-    
-    holder?.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    holder?.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
     picker.dismiss(animated: true, completion: nil)
   }
 }

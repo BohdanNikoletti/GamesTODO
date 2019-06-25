@@ -61,12 +61,12 @@ final class GameViewController: UIViewController {
   // MARK: - Actions
   @objc func keyboardNotification(notification: NSNotification) {
     guard let userInfo = notification.userInfo, shouldShiftKeyBoard else { return }
-    let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+    let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
     let endFrameY = endFrame?.origin.y ?? 0
-    let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-    let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-    let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-    let animationCurve = UIViewAnimationOptions(rawValue: animationCurveRaw)
+    let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+    let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+    let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+    let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRaw)
     if endFrameY >= UIScreen.main.bounds.size.height {
       self.keyboardHeightLayoutConstraint?.constant = 0.0
     } else {
@@ -153,7 +153,7 @@ final class GameViewController: UIViewController {
     descriptionTextView.delegate = self
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.keyboardNotification(notification:)),
-                                           name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                           name: UIResponder.keyboardWillChangeFrameNotification,
                                            object: nil)
     let toolBar = UIToolbar()
     toolBar.sizeToFit()

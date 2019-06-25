@@ -130,7 +130,7 @@ extension MainGamesList: UITableViewDelegate, UITableViewDataSource {
     return indexPath.section != 0 && !games.isEmpty
   }
   
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let game = games.remove(at: indexPath.row)

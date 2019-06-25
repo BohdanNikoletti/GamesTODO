@@ -307,13 +307,16 @@
 				TargetAttributes = {
 					A9D01485207F9E4B0055D468 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1020;
 					};
 					A9D0149C207F9E4D0055D468 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1020;
 						TestTargetID = A9D01485207F9E4B0055D468;
 					};
 					A9D014A7207F9E4D0055D468 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1020;
 						TestTargetID = A9D01485207F9E4B0055D468;
 					};
 				};
@@ -589,7 +592,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -607,7 +610,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -626,7 +629,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODOTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GamesTODO.app/GamesTODO";
 			};
@@ -646,7 +649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODOTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GamesTODO.app/GamesTODO";
 			};
@@ -665,7 +668,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODOUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = GamesTODO;
 			};
@@ -684,7 +687,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.com.geek-owl.GamesTODOUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = GamesTODO;
 			};
